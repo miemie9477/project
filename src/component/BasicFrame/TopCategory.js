@@ -1,4 +1,9 @@
 import { NavLink } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { CiSearch } from "react-icons/ci";
+
 
 import "./css/frame.css"
 
@@ -23,7 +28,20 @@ const Category = () => {
                 <li><NavLink to="/TequilaPage">龍舌蘭</NavLink></li>
                 <li><NavLink to="/LiqueurPage">利口酒</NavLink></li>
                 <li><NavLink to="/SoftDrinksPage">無酒精</NavLink></li>
+                <li></li>
             </ul>
+
+            <div className="searchCol">
+                    <InputGroup  className="mb-10">
+                        <Form.Control
+                            type="text"
+                            placeholder="Search"
+                            aria-label="Search"
+                            className=" mr-sm-2"
+                        />
+                        <NavLink to="#"><Button className="w-90 p-50" variant="outline-secondary" id="button-addon2"><CiSearch /></Button></NavLink>
+                    </InputGroup>
+            </div>
         
         </div>
     );

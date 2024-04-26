@@ -1,12 +1,37 @@
+
+
+
+.carousel{
+    width: 1200px;
+}
+
+.CarouselCss{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.CarouselCss img{
+    position: relative;
+    min-height: auto;
+    min-width: auto;
+    width: 1200px;
+    height: 600px;
+    
+}
+
 .CarouselAd1Text{
-    display: relative;
+    display: block;
+    position: relative;
     background-color:#000000;
     background-color:rgba(0,0,0,0.6); 
     text-align: left;
     height: 340px;
     width: 500px;
     padding: 20px;
-    display: block;
+    
 }
 
 .CarouselAd1Text h1, .CarouselAd1Text h4,
@@ -18,13 +43,29 @@
 }
 
 .CarouselAd2Text{
-    display: relative;
+    display: block;
+    position: relative;
+    justify-content: right;
     background-color:#000000;
     background-color:rgba(0,0,0,0.6); 
-    text-align: center;
     height: 340px;
     width: 500px;
     padding: 20px;
+    left: 20%;
+}
+
+.CarouselAd3Text{
+    display: block;
+    position: relative;
+    justify-content: right;
+    background-color:#000000;
+    background-color:rgba(0,0,0,0.6); 
+    height: 300px;
+    width: 500px;
+    padding-top: 25px;
+    padding-right: 30px;
+    padding-left: 30px;
+    left: 50%;
 }
 
 .Dividerline{
@@ -55,3 +96,4 @@
     text-decoration: none;
     color: white;
 }
+

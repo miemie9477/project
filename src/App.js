@@ -10,7 +10,7 @@ import TequilaPage from "./component/pages/TequilaPage/TequilaPage";
 import LiqueurPage from "./component/pages/LiqueurPage/LiqueurPage";
 import SoftDrinksPage from "./component/pages/SoftDrinksPage/SoftDrinksPage";
 import GordonsGin from "./component/pages/01MechandisesPages/Gordon'sGin/Gordon'sGin";
-
+import CartPage from "./component/pages/01CartPage/CartPage";
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
         <Route path="LiqueurPage" element={<LiqueurPage/>} />
         <Route path="SoftDrinksPage" element={<SoftDrinksPage/>} />
         <Route path="GinPage/GordonsGin" element={<GordonsGin/>} />
+        <Route path="CartPage" element = {<CartPage/>} />
       </Routes>
     </HashRouter>
     

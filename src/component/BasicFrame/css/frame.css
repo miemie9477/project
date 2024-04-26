@@ -15,6 +15,11 @@ body{
     z-index: 1;
 }
 
+.BottomBarLogoCss img{
+    min-height: 5%;
+    min-width: auto;
+    width: 100%;
+}
 .BottomBarAreaCss{
     height: 468px;
     width: 100%;
@@ -27,12 +32,6 @@ body{
 }
 
 
-.BottomBarLogoCss img{
-    min-height: 5%;
-    min-width: auto;
-    width: 100%;
-    position: relative;
-}
 
 .BottomText{
     font-size: 14px;
@@ -63,23 +62,23 @@ body{
 .CategoryCss{
     background-color: #E8E8E8;
     position: sticky;
-    top:0;
-    /* fail to stick */
+    display: flex;
+    justify-content: center;
 }
 
 .CategoryCss ul{
     display: flex;
     justify-content: center;
     list-style-type:none;
-    margin: 20px 0px 0px 0px ;
+    margin: 1px 0px 0px 0px ;
     font-size: 18px;
     font-weight: lighter;
 }
 
 .CategoryCss li{
-    padding: 12px;
+    padding-right: 20px;
     color: black;
-    display: block;
+    display: flex;
 }
 .CategoryCss li a{
     text-decoration: none;
@@ -91,6 +90,12 @@ body{
     background-color: #D9D9D9;
     color:#a93636;
     
+}
+
+.searchCol {
+    position: relative;
+    display: block;
+    align-content: center;
 }
 
 .LogoLocation{
@@ -109,26 +114,35 @@ body{
     background-color:#C25B5B;
     position: relative;
     display: flex;
+    justify-content: space-between;
     top: 0px;
     width: 100%;
     margin: 0 auto;
-    padding-top:8px;
-    padding-bottom: 8px;
     font-size: 16px;
     color:white;
 }
+
 .TopBarTextRightCss{
-    position: relative;
     display: flex;
-    left: 74%;
+    justify-content: flex-end;
 }
 
-.TopBarTextRightCss a{
+.RightCss{
+    padding-top:7px;
+    padding-bottom: 7px;
+    position: relative;
+    display: flex;
+}
+
+.RightCss a{
     text-decoration: none;
     color: inherit;
+    padding-right: 20px;
 }
 
 .TopBarTextLeftCss ul{
+    padding-top:7px;
+    padding-bottom: 7px;
     display: flex;
     list-style-type:none;
     margin: 0 auto;
@@ -144,6 +158,18 @@ body{
     color:inherit;
 }
 
-.TopBarTextLeftCss li :hover, .TopBarTextRightCss :hover{
+.TopBarTextLeftCss li :hover, .RightCss :hover{
     color: rgb(224, 224, 224);
+}
+
+.CartCss{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.CartCss .btn{
+    border-radius: 0; /* 将按钮的圆角设置为 0 */
+    margin: 0px;
+    height: 100%;
 }

@@ -21,11 +21,12 @@ import "./css/HomePage.css"
 function HomeCarousel() {
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent:"center",margin: '50px'}}>
-                <Carousel style={{ width: '80%', height: '50%' }}>
-                    <Carousel.Item interval={3000}>
-                        <img width={1200} height={600} src={Ad1} alt="ad1"/>
-                        <Carousel.Caption>
+            <div className='CarouselCss'>
+            
+                <Carousel>
+                    <Carousel.Item interval={3000} >
+                        <img src={Ad1} alt="ad1"/>
+                        <Carousel.Caption >
                             <div className="CarouselAd1Text">
                                 <h4 style={{fontWeight:"lighter"}}>熱情推薦</h4>
                                 <h1 style={{fontWeight:"bold", marginBottom:"15px"}}>白州12年單一純麥威士忌</h1>
@@ -36,9 +37,9 @@ function HomeCarousel() {
                         </Carousel.Caption>
                     </Carousel.Item>
 
-                    <Carousel.Item interval={3000}>
-                        <img width={1200} height={600} src={Ad2} alt="ad2"/>
-                        <Carousel.Caption style={{display:"flex",justifyContent:"center", top:"20%"}}>
+                    <Carousel.Item interval={3000} >
+                        <img src={Ad2} alt="ad2"/>
+                        <Carousel.Caption >
                             <div className="CarouselAd2Text">
                                 <h4 style={{fontWeight:"lighter"}}>本月暢銷</h4>
                                 <h1 style={{fontWeight:"bold", marginBottom:"15px"}}>灰雁原味伏特加</h1>
@@ -48,10 +49,10 @@ function HomeCarousel() {
                         </Carousel.Caption>
                     </Carousel.Item>
 
-                    <Carousel.Item interval={3000}>
-                        <img width={1200} height={600} src={Ad3} alt="ad3"/>
-                        <Carousel.Caption style={{top:"20%", left:"50%"}}>
-                            <div className="CarouselAd2Text">
+                    <Carousel.Item interval={3000} >
+                        <img src={Ad3} alt="ad3"/>
+                        <Carousel.Caption >
+                            <div className="CarouselAd3Text">
                                 <h4 style={{fontWeight:"lighter"}}>超凡風味</h4>
                                 <h1 style={{fontWeight:"bold", marginBottom:"15px"}}>約翰走路 黑牌12年</h1>
                                 <h4>各地區氣候和橡木桶等錯綜複雜的因素與略有不同的成熟方式，創造出獨具超凡風味的威士忌</h4><br/>

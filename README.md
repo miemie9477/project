@@ -7,17 +7,16 @@
 
 4.Contact
 
-# Update Journal: 2024.04.20 Saturday 14:27
+# Update Journal: 2024.04.21 Sunday 00:06
 
-* 修改 *App.js* ，將BrowserRouter改成 HashRouter
-* 修改package.json，新增 ```"homepage": "."```
-* 以上修改皆為修理build後專案打開為空白頁面問題
+* Add react-icon for *Cart* and *Search column*
+> npm install react-icons
 
 # Todo
  - [x] 畫完figma商品詳細頁面
  - [ ] 完成所有商品頁面(請參考 [商品型錄](https://drive.google.com/drive/folders/1So-jHqpJI1xz-dBw0ushkfMkICtQRrI6?usp=sharing) )
- - [ ] 商品種類要做搜尋欄
- - [ ] 會員旁邊要增加購物車樣式
+ - [X] 商品種類要做搜尋欄
+ - [X] 會員旁邊要增加購物車樣式
 *****
 
 # The format about this project
@@ -26,11 +25,10 @@
 
 >*若有新增其他library請註明*
 
-React.js
-
-React.bootstrap
-
+React.js<br/>
+React.bootstrap<br/>
 react-router-dom (npm install react-router-dom) <br>
+npm install react-icons
 
 >壓縮檔案前請不要將*node_modules/*一同壓縮
 
