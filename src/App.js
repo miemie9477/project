@@ -11,6 +11,9 @@ import LiqueurPage from "./component/pages/LiqueurPage/LiqueurPage";
 import SoftDrinksPage from "./component/pages/SoftDrinksPage/SoftDrinksPage";
 import GordonsGin from "./component/pages/01MechandisesPages/Gordon'sGin/Gordon'sGin";
 import CartPage from "./component/pages/01CartPage/CartPage";
+import IntroductionPage from "./component/pages/00OtherPage/IntroductionPage";
+import LoginPage from "./component/pages/00OtherPage/LoginPage";
+import RegisterPage from "./component/pages/00OtherPage/RegisterPage";
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
         <Route path="SoftDrinksPage" element={<SoftDrinksPage/>} />
         <Route path="GinPage/GordonsGin" element={<GordonsGin/>} />
         <Route path="CartPage" element = {<CartPage/>} />
+        <Route path="IntroductionPage" element={<IntroductionPage/>}/>
+        <Route path="LoginPage" element={<LoginPage/>}/>
+        <Route path="RegisterPage" element={<RegisterPage/>}/>
       </Routes>
     </HashRouter>
     

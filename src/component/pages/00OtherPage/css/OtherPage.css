@@ -1,0 +1,39 @@
+.loginBoxCss{
+    position: relative;
+    height: 1200px;
+    display: flex;
+    justify-content: center;
+}
+
+.loginContent{
+    position: relative;
+    display: inline;
+    height: 400px;
+    width: 500px;
+    border: 1px solid rgb(121, 121, 121);
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+.loginForm{
+    padding:0px 50px 20px 50px;
+}
+.loginForm .btn{
+    border-radius: 0;
+    background-color: #c64d4d;
+    border-color: #c64d4d;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.registerLink{
+    font-size: 14px;
+    margin-top: 10px;
+    
+}
+
+.registerLink a{
+    padding-left: 5px;
+    color: inherit;
+}

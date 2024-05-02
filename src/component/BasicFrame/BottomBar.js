@@ -11,9 +11,9 @@ import { NavLink } from "react-router-dom";
 const BottomBar = () =>{
     return(
         <>
-        <div className="BottomBarLogoCss">
-                <img src={DrunkDrive} alt="DrunkDrive"></img>
-        </div>
+            <div className="BottomBarLogoCss">
+                    <img src={DrunkDrive} alt="DrunkDrive"></img>
+            </div>
             <div className="BottomBarAreaCss">
                     
                     <Container className="BottomText">
