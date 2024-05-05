@@ -7,16 +7,15 @@
 
 4.Contact
 
-# Update Journal: 2024.04.21 Sunday 00:06
+# Update Journal: 2024.05.05 Sunday 13:47
 
 * Add react-icon for *Cart* and *Search column*
 > npm install react-icons
 
 # Todo
- - [x] 畫完figma商品詳細頁面
  - [ ] 完成所有商品頁面(請參考 [商品型錄](https://drive.google.com/drive/folders/1So-jHqpJI1xz-dBw0ushkfMkICtQRrI6?usp=sharing) )
- - [X] 商品種類要做搜尋欄
- - [X] 會員旁邊要增加購物車樣式
+ - [ ] 完成會員註冊
+ - [ ] 增加狀態管理
 *****
 
 # The format about this project

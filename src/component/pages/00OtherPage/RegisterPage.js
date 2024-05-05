@@ -63,6 +63,31 @@ const RegisterForm = () =>{
                                 type="text"
                                 id="registerPId"
                             />
+
+                            <div key={`default-radio`} className="mb-3">
+                                <Form.Label htmlFor="male-radio"><b>性別</b></Form.Label>
+                                <Form.Check // prettier-ignore
+                                    inline
+                                    name="group_sex"
+                                    type="radio"
+                                    id={`male-radio`}
+                                    label={`男性`}
+                                />
+                                <Form.Check // prettier-ignore
+                                    inline
+                                    name="group_sex"
+                                    type="radio"
+                                    id={`female-radio`}
+                                    label={`女性`}
+                                />
+                                <Form.Check // prettier-ignore
+                                    inline
+                                    name="group_sex"
+                                    type="radio"
+                                    id={`otherSex-radio`}
+                                    label={`其他`}
+                                />
+                            </div>
                             <Form.Label htmlFor="registerEmail"><b>電子郵件</b></Form.Label>
                             <Form.Control
                                 size={10}
