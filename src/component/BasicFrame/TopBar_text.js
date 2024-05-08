@@ -14,7 +14,7 @@ const TopBarText = () => {
                     <ul >
                         <li><NavLink to="/IntroductionPage">關於</NavLink></li>
                         <li><NavLink to="#">常見問題</NavLink></li>        
-                        <li><NavLink to="#">配送資訊</NavLink></li>
+                        <li><NavLink to="/DeliveryPage">配送資訊</NavLink></li>
                     </ul>
                 </div>
                 <div className="TopBarTextRightCss">

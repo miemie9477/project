@@ -14,7 +14,7 @@ import CartPage from "./component/pages/01CartPage/CartPage";
 import IntroductionPage from "./component/pages/00OtherPage/IntroductionPage";
 import LoginPage from "./component/pages/00OtherPage/LoginPage";
 import RegisterPage from "./component/pages/00OtherPage/RegisterPage";
-
+import DeliveryPage from "./component/pages/00OtherPage/DeliveryPage";
 function App() {
   return (
     
@@ -34,6 +34,7 @@ function App() {
         <Route path="IntroductionPage" element={<IntroductionPage/>}/>
         <Route path="LoginPage" element={<LoginPage/>}/>
         <Route path="RegisterPage" element={<RegisterPage/>}/>
+        <Route path="DeliveryPage" element={<DeliveryPage/>}/>
       </Routes>
     </HashRouter>
     

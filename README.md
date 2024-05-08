@@ -7,15 +7,17 @@
 
 4.Contact
 
-# Update Journal: 2024.05.05 Sunday 13:47
+# Update Journal: 2024.05.07 Tuesday 13:47
 
 * Add react-icon for *Cart* and *Search column*
 > npm install react-icons
 
 # Todo
  - [ ] 完成所有商品頁面(請參考 [商品型錄](https://drive.google.com/drive/folders/1So-jHqpJI1xz-dBw0ushkfMkICtQRrI6?usp=sharing) )
- - [ ] 完成會員註冊
+ - [ ] 完成會員註冊(包含表單驗證)
  - [ ] 增加狀態管理
+ - [ ] 下次進度檢核前要完成cookie & session
+ - [ ] 研究一下搜尋功能
 *****
 
 # The format about this project
