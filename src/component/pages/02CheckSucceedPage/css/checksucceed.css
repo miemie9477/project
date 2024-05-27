@@ -1,0 +1,39 @@
+.CheckSucceed{
+    position:"relative";
+    margin-top: 55px;
+    text-align: center;
+}
+
+.CheckSucceed img{
+    width: 50px;
+    height: auto;
+}
+
+.CheckSucceed_Title{
+    text-align: center;
+    font-size: 40px;
+}
+
+.CheckSucceed_line{
+    margin: 15px auto;
+    width: 35%;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    
+}
+
+.CheckSucceed_detail{
+    font-size: 18px;
+}
+
+.CheckSucceed_ReturnHome a{
+    text-decoration: none;
+    color: white;
+}
+
+.CheckSucceed_ReturnHome{
+    font-size: 24px;
+    margin: 20px auto 0px auto;
+    border-radius: 40px;
+}

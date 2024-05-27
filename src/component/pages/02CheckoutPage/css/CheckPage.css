@@ -1,0 +1,88 @@
+.CheckBodyCss{
+    position: relative;
+    background-color: rgb(217, 215, 215);
+    height: 1500px;
+    width: 100%;
+    z-index: 0;
+}
+
+.Check_Delivery{
+    position: relative;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    padding: 20px;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+.Check_Creditcard{
+    position: relative;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    padding: 20px;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+.CheckBodyCss input{
+    border: rgb(205, 205, 205) 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    height: 35px;
+    margin: 5px auto;
+}
+
+.CheckBodyCss p{
+    color: red;
+    text-align: right;
+    margin: 0;
+    
+}
+
+
+.CheckBodyCss input:focus{
+    outline: #c2dbfe 4px solid;
+    border: #86b7fe 1px solid;
+}
+
+
+.Check_TitleText{
+    text-align: left;
+    font-size: 24px;
+}
+
+.Check_line{
+    margin: 15px 0px;
+    width: 100%;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    
+} 
+
+
+.Check_OrderSummary{
+    position: relative;
+    background-color: white;
+    width: 95%;
+    margin : 40px auto 0px auto ;
+    padding: 20px 30px;
+}
+.Check_OrderSummary .btn{
+    border-radius: 0;
+    background-color: #c64d4d;
+    border-color: #c64d4d;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.Check_OrderSummary .btn:hover{
+    background-color: #a44040;
+    border-color: #a44040;
+}
+

@@ -7,7 +7,8 @@ import tanqueray from './pic/Tanqueray  Gin.png';
 import { HiPlus } from "react-icons/hi2";
 import { HiMinus } from "react-icons/hi2";
 import { CiTrash } from "react-icons/ci";
-import { NavLink } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 
 const CartBody = () =>{
@@ -43,11 +44,23 @@ const CartBody = () =>{
     );
 }
 const Item = () =>{
+
+    const [Cart_num, setCart_num] = useState(0);
+    const Cart_Minus = () =>{
+        if(Cart_num>0) setCart_num(Cart_num - 1)
+        else setCart_num(0)
+    }
+
+    const Cart_Add = () =>{
+        setCart_num(Cart_num + 1)
+    }
+
+
     return(
         <div className="CartItem">
             <div style={{display:"flex"}}>
                 <input type="checkbox" name="CartItem" className="CartCheckCss" value={1}/>
-                <img src={tanqueray} alt=""></img>
+                <NavLink to="#"><img src={tanqueray} alt=""></img></NavLink>
                 <div style={{display:"inline"}}>
                     <NavLink to="#"><div style={{fontSize:"18px"}}><b>坦奎瑞琴酒</b><br/></div></NavLink>
                     <div style={{fontSize:"14px"}}>
@@ -57,10 +70,10 @@ const Item = () =>{
                 </div>
             </div>
             <div className="CartAmountControl">
-                <Button variant="link" style={{color:"black"}} className="trash"><CiTrash size={20}/></Button>
-                <Button variant="secondary" name="minusBtn" className="minus"><HiMinus size={14} color="black"/></Button>
-                <Button variant="outline-secondary" name="amount" disabled style={{color:"black", paddingLeft:"16px",paddingRight:"16px"}}>1</Button>
-                <Button variant="secondary" name="plusBtn" className="plus"><HiPlus size={14} color="black"/></Button>
+                <Button variant="link" style={{color:"black"}} className="trash" ><CiTrash size={20}/></Button>
+                <Button variant="secondary" name="minusBtn" className="minus" onClick={Cart_Minus}><HiMinus size={14} color="black"/></Button>
+                <Button variant="outline-secondary" name="amount" disabled style={{color:"black", paddingLeft:"16px",paddingRight:"16px"}}>{Cart_num}</Button>
+                <Button variant="secondary" name="plusBtn" className="plus" onClick={Cart_Add}><HiPlus size={14} color="black"/></Button>
 
             </div>
         </div>
@@ -72,7 +85,7 @@ const OrderSummary = () =>{
         <div className="OrderSummary">
             <div style={{fontSize:"20px",fontWeight:"bold"}}>訂單總結<hr/></div>
             <div style={{position:"relative", fontSize:"20px", display:"flex", justifyContent:"right"}}>NT. 680</div>
-            <Button variant="danger">點我結帳(1)</Button>
+            <NavLink to="/CartPage/CheckPage"><Button variant="danger">點我結帳(1)</Button></NavLink>
         </div>
     );
 }

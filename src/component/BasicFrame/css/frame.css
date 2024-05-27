@@ -92,7 +92,7 @@ body{
 
 .searchCol {
     position: relative;
-    display: block;
+    display: inline;
     align-content: center;
 }
 

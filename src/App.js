@@ -15,7 +15,13 @@ import IntroductionPage from "./component/pages/00OtherPage/IntroductionPage";
 import LoginPage from "./component/pages/00OtherPage/LoginPage";
 import RegisterPage from "./component/pages/00OtherPage/RegisterPage";
 import DeliveryPage from "./component/pages/00OtherPage/DeliveryPage";
+import CheckPage from "./component/pages/02CheckoutPage/CheckPage";
+import CheckSucceedPage from "./component/pages/02CheckSucceedPage/CheckSucceedPage";
+import RegisterSucceedPage from "./component/pages/02RegisterSucceedPage/RegisterSucceedPage";
+
 function App() {
+  
+  
   return (
     
     <HashRouter basename="/">
@@ -35,6 +41,9 @@ function App() {
         <Route path="LoginPage" element={<LoginPage/>}/>
         <Route path="RegisterPage" element={<RegisterPage/>}/>
         <Route path="DeliveryPage" element={<DeliveryPage/>}/>
+        <Route path="CartPage/CheckPage" element={<CheckPage/>}/>
+        <Route path="CartPage/CheckPage/CheckSucceedPage" element={<CheckSucceedPage/>}/>
+        <Route path="RegisterPage/RegisterSucceedPage" element={<RegisterSucceedPage/>}/>
       </Routes>
     </HashRouter>
     

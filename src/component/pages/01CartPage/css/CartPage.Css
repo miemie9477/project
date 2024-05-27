@@ -40,6 +40,12 @@
     border-radius: 0;
     position: relative;
 }
+
+.CartItem a{
+    text-decoration: none;
+    color: black;
+}
+
 .CartAmountControl{
     
     align-content: end;
