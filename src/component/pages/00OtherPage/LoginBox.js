@@ -11,18 +11,14 @@ const LoginBox = () =>{
 
     const navigate = useNavigate();
 
-    const [account, setAccount] = useState("");
-    const [password, setPassword] = useState("");
-    const [result, setResult] = useState(0);
-
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setError, formState: { errors } } = useForm();
     
 
     const onSubmit = (data) => {
         
         console.log(data);
 
-        const url = 'http://localhost:3001/verify';
+        const url = 'http://localhost:3001/login/verify';
         const info = {
             mAccount : data.inputAccount,
             mPwd: data.inputPassword
@@ -31,29 +27,29 @@ const LoginBox = () =>{
         axios.post(url, info)
         .then(
             response=>{           
-                if(response){
-                    setResult(1)
-                    console.log(response.result);
-                    console.log("驗證成功");
-                    navigate('/');
+                if(response.data.length > 0){
+                    if(info.mAccount === "admin" && info.mPwd === "admin123456"){
+                        alert('管理員登入');
+                        navigate('/');
+                    }
+                    else {
+                        console.log(response.data);
+                        console.log("驗證成功");
+                        navigate('/');
+                    }
                 }
-                else if(response === ""){
-                    alert("登入失敗");
+                else if(response.data.result === "Login failed"){
+                    setError("inputPassword",{type:"custom", message:"帳號或密碼錯誤"})
+                    // alert("登入失敗");
                 }
             }
         ).catch(
             error =>{
                 console.log(error);
+                alert("伺服器崩潰，等待回應");
+                throw error;
             }
         )
-        
-        // axios.post(url)
-        // .then(response =>{
-        //         console.log(response)
-        //     }
-        // )
-        
-        
         
     }
 

@@ -50,5 +50,23 @@ const MemberLog = () =>{
     );
 }
 
+const AdminLog = () =>{
+    return(
+        <div>
+            <Dropdown as={NavItem}>
+                <Dropdown.Toggle as={NavLink} >管理者專區</Dropdown.Toggle>
+                <Dropdown.Menu>
+                    <Dropdown.Item>會員管理</Dropdown.Item>
+                    <Dropdown.Item>訂單管理</Dropdown.Item>
+                    <Dropdown.Item>商品管理</Dropdown.Item>
+                    <Dropdown.Divider></Dropdown.Divider>
+                    <Dropdown.Item>登出</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+        </div>
+
+    );
+}
+
 
 export default TopBarText

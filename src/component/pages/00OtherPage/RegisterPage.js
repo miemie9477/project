@@ -7,9 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import IntroductionPic from "./pic/introductionPic.jpg"
 import { useForm } from 'react-hook-form';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import axios from "axios";
 const RegisterPage = () =>{
     return(
         <div style={{position:"relative"}}>
@@ -25,24 +25,201 @@ const RegisterPage = () =>{
 const RegisterForm = () =>{
     const navigate = useNavigate();
 
-    const { register, handleSubmit, watch, setError, formState: { errors } } = useForm({
+    const { register, handleSubmit, watch, clearErrors, setError, formState: { errors } } = useForm({
         mode:"onSubmit",
         reValidateMode:"onBlur",
 
     });
-    const [passwordtext, repeatpasswordtext] = watch(["registerPassword","registerRepeatPassword"])
-    useEffect(() => {
-        if(!!passwordtext && !!repeatpasswordtext && (passwordtext !== repeatpasswordtext)){
-            setError("registerRepeatPassword",{type:"custom", message:"兩密碼不相同"})
-        }
-
-    },[passwordtext,repeatpasswordtext])
     
-    const onSubmit = (data) => {
-        console.log("驗證成功",data);
-        navigate('/RegisterPage/RegisterSucceedPage');
+    const [passwordtext, repeatpasswordtext] = watch(["registerPassword","registerRepeatPassword"])
+    
+    const validatePasswords = () => {
+        if (!!passwordtext && !!repeatpasswordtext && (passwordtext !== repeatpasswordtext)) {
+            setError("registerRepeatPassword",{type:"manual", message:"兩密碼不相同"})
+            return false;
+        }
+        clearErrors('registerRepeatPassword');
+        return true;
+    };
+
+    const mAccount = watch("registerAccount");
+    const checkAccount = async () =>{
+        console.log("check :" + mAccount)
+        if(typeof mAccount !== 'undefined'){
+            const url = "http://localhost:3001/register/account"
+            await axios.post(url, {mAccount})
+            .then(
+                response =>{
+                    if(response.data.result === "mAccount exist"){
+                        console.log(mAccount + " " + response.data.result)
+                        setError("registerAccount",{type:"custom", message:"帳號已存在"});
+                        return false;
+                    }
+                    console.log("check : Account")
+                    clearErrors("registerAccount");
+                    return true;
+                    
+                }
+            ).catch( 
+                error =>{
+                    console.log(error);
+                }
+            )
+        }
     }
-    console.log(errors);
+
+    const pId = watch('registerPId');
+    const checkPId = async () =>{
+        console.log("check :" + pId)
+        if (typeof pId !== 'undefined'){
+            const url = "http://localhost:3001/register/pId"
+            await axios.post(url, {pId})
+            .then(
+                response =>{
+                    if(response.data.result === "pId exist"){
+                        setError("registerPId",{type:"custom", message:"身分證字號已註冊"})
+                        return false;
+                    }
+                    console.log("check : PId")
+                    clearErrors("registerPId");
+                    return true;
+                }
+            ).catch( 
+                error =>{
+                    console.log(error);
+                }
+            )
+        }
+    }
+    
+    const email = watch('registerEmail');
+    const checkEmail = async () =>{
+        console.log("check :" + email)
+        if (typeof email !== 'undefined'){
+            const url = "http://localhost:3001/register/email"
+            await axios.post(url, {email})
+            .then(
+                response =>{
+                    if(response.data.result === "email exist"){
+                        setError("registerEmail",{type:"custom", message:"電子郵件已註冊"})
+                        return false;
+                    }
+                    console.log("check : Email")
+                    clearErrors("registerEmail");
+                    return true;
+                    
+                }
+            ).catch( 
+                error =>{
+                    console.log(error);
+                }
+            )
+        }
+    }
+
+    const phone = watch('registerPhone');
+    const checkPhone = async () =>{
+        console.log("check :" + phone)
+        if (typeof phone !== 'undefined'){
+            const url = "http://localhost:3001/register/phone"
+            await axios.post(url, {phone})
+            .then(
+                response =>{
+                    if(response.data.result === "phone exist"){
+                        setError("registerPhone",{type:"custom", message:"門號已註冊"})
+                        return false;
+                    }
+                    console.log("check : phone")
+                    clearErrors("registerPhone");
+                    return true;
+                    
+                }
+            ).catch( 
+                error =>{
+                    console.log(error);
+                }
+            )
+        }
+    }
+
+    const onSubmit = async (data) => {
+
+        const passwordsValid = validatePasswords();
+        const accountValid = checkAccount();
+        const pIdValid = checkPId();
+        const emailValid = checkEmail();
+        const phoneValid = checkPhone();
+
+        if (passwordsValid && accountValid && pIdValid && emailValid && phoneValid) {
+            console.log("All validations passed");
+            const registerInfo ={
+                mAccount:  data.registerAccount,
+                mPwd: data.registerPassword,
+                mName: data.registerName,
+                pId: data.registerPId,
+                email: data.registerEmail,
+                gender: data.registergroup_sex,
+                address: data.registerAddress,
+                phone: data.registerPhone,
+                birthday: data.birthday
+            }
+            console.log(registerInfo);
+            
+            const url = "http://localhost:3001/register/check"; 
+            axios.post(url, registerInfo)
+            .then(
+                response =>{
+                    if(response.data.result === "驗證成功"){  
+                        navigate('/RegisterPage/RegisterSucceedPage');
+                        
+                    }
+                }
+            )
+            .catch(
+                error =>{
+                    console.log(error);
+                    alert("伺服器崩潰，請重新整理");
+                    
+                }
+            )
+        } else {
+            console.log("One or more validations failed");
+            // Handle the validation failure
+        }
+        
+        // if(validatePasswords()){
+        //     console.log("pwd ok");
+        // } else{
+        //     console.log("pwd not ok")
+        // }
+
+        // if(checkAccount()) {
+        //     console.log("Account ok");
+        // }else{
+        //     console.log("Account not ok");
+        // }
+
+        // if(checkPId()) {
+        //     console.log("pid ok")
+        // }else{
+        //     console.log("pid not ok")
+        // }
+
+        // if(checkEmail()) {
+        //     console.log("email ok")
+        // }else{
+        //     console.log("email not ok")
+        // }
+
+        // if(checkPhone()) {
+        //     console.log("Phone ok")
+        // }else{
+        //     console.log("Phone not ok")
+        // }
+   
+    }
+    
+    
 
     return(
         <div className="registerContent">
@@ -65,9 +242,9 @@ const RegisterForm = () =>{
 
                                 
                                 <b>帳號</b>
-                                <input type="account" id="registAccount"
-                                {...register("registAccount", {required: true, maxLength: {value: 10, message: "帳號過長"}})} />
-                                {!!errors.registAccount && <p>{errors.registAccount.message.toString() || "請輸入帳號"}</p> }
+                                <input type="account" id="registerAccount" 
+                                {...register("registerAccount", {required: true, maxLength: {value: 10, message: "帳號過長"}})} />
+                                {!!errors.registerAccount && <p>{errors.registerAccount.message.toString() || "請輸入帳號"}</p> }
         
                                 <b>密碼</b>
                                 <input type="password" id="registerPassword"
@@ -90,21 +267,21 @@ const RegisterForm = () =>{
                                 <b>性別</b>
                                 <div key={`default-radio`} className="registerSex">
                                     <div className="registerSexdecoration">
-                                        <input name="registergroup_sex[]" type="radio"  id="male-radio" value="男性"  {...register("registergroup_sex", { required: true })} />
-                                        <input name="registergroup_sex[]" type="radio"  id="female-radio" value="女性" {...register("registergroup_sex", { required: true })} />
-                                        <input name="registergroup_sex[]" type="radio"  id="otherSex-radio" value="其他" {...register("registergroup_sex", { required: true })} />
+                                        <input name="registergroup_sex" type="radio"  id="male-radio" value="M"  {...register("registergroup_sex", { required: true })} />
+                                        <input name="registergroup_sex" type="radio"  id="female-radio" value="F" {...register("registergroup_sex", { required: true })} />
                                     </div>
                                     <div className="registerSexdecoration">
-                                        <label for="male-radio">男性</label>
-                                        <label for="female-radio">女性</label>
-                                        <label for="otherSex-radio">其他</label>
+                                        <label htmlFor="male-radio">男性</label>
+                                        <label htmlFor="female-radio">女性</label>
                                     </div>
                                 </div>
                                 {!!errors.registergroup_sex && <p>{errors.registergroup_sex.message.toString() || "請選擇性別"}</p> }
 
                                 <b>電子郵件</b>
-                                <input type="email" id="registerEmail"
-                                {...register("registerEmail", {required: true, })} />
+                                <input type="email" id="registerEmail" 
+                                {...register("registerEmail", {
+                                    required: true, 
+                                    })} />
                                 {!!errors.registerEmail && <p>{errors.registerEmail.message.toString() || "請輸入電子郵件"}</p> }
         
 
