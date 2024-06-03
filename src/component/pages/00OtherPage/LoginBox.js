@@ -5,10 +5,14 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
+import { useContext } from 'react';
+import { LoginContext, AccountContext} from "../../../ContextAPI";
 
 
 const LoginBox = () =>{
-
+    const { login, setLogin } = useContext(LoginContext);
+    const { userAccount, setUserAccount} = useContext(AccountContext);
+    
     const navigate = useNavigate();
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
@@ -30,12 +34,18 @@ const LoginBox = () =>{
                 if(response.data.length > 0){
                     if(info.mAccount === "admin" && info.mPwd === "admin123456"){
                         alert('管理員登入');
-                        navigate('/');
+                        setLogin(2);
+                        setUserAccount(data.inputAccount);
+                        console.log(data.inputAccount)
+                        navigate('/AdminPage');
                     }
                     else {
-                        console.log(response.data);
+                        console.log("account:" + data.inputAccount);
+                        setUserAccount(data.inputAccount);
                         console.log("驗證成功");
+                        setLogin(1);
                         navigate('/');
+                        //消費者直接跳轉到主畫面會比較合理，要促進消費者購物
                     }
                 }
                 else if(response.data.result === "Login failed"){

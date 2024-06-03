@@ -7,7 +7,7 @@ import TopBarText from "./TopBar_text";
 const Frame = () =>{
     return(
         <div>
-            <TopBarText />
+            <TopBarText/>
             <Category />   
             <BottomBar/>
         </div>

@@ -1,0 +1,246 @@
+.Mem_OrderManage{
+    background-color: rgb(217, 215, 215);
+    width: 100%;
+}
+
+.MemberBodyCss{
+    background-color: rgb(217, 215, 215);
+    width: 100%;
+    z-index: 0;
+}
+
+.Member_FormBG{
+    position: relative;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    padding: 20px;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+.Member_Creditcard{
+    position: relative;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    padding: 20px;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+.MemberBodyCss input:not(.Member_Sex input){
+    border: rgb(205, 205, 205) 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    height: 35px;
+    margin: 5px auto;
+}
+
+.MemberBodyCss p{
+    color: red;
+    text-align: right;
+    margin: 0;
+    
+}
+
+
+.MemberBodyCss input:focus:not(.Member_Sex input){
+    outline: #c2dbfe 4px solid;
+    border: #86b7fe 1px solid;
+}
+
+
+.Member_Sex{
+    display: flex;
+    height: 75px;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.Member_Sex input{
+    border: rgb(205, 205, 205) 1px solid;
+    width: 35px;
+    height: 35px;
+}
+
+.Member_Sexdecoration{
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.Member_TitleText{
+    text-align: left;
+    font-size: 24px;
+}
+
+.Member_line{
+    margin: 15px 0px;
+    width: 100%;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    
+} 
+
+.Member_ConfirmChange{
+    margin: 15px auto 0px auto;
+}
+
+.Mem_OrderManageBG{
+    background-color: rgb(217, 215, 215);
+}
+
+.Mem_OrderManage{
+    margin: 30px auto 0px auto;
+    background-color: white;
+}
+
+.Mem_Trans_Title{
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Mem_Transaction{
+    width: 95%; 
+    margin: auto;
+}
+
+.Mem_Trans_Num{
+    width: 84%;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 40px; /* 将行高设置为容器高度 */
+}
+
+.Mem_Trans_Delete{
+    width: 11%;
+    text-align:end;
+    margin-top: 2px;
+}
+
+.Mem_Trans_Return{
+    width: 5%;
+    margin: 2px 2px 0px 2px;
+}
+
+.Mem_Trans_Return button{
+    color: white;
+}
+
+.Mem_Trans_divider{
+    margin: 0 auto;
+    height: 7px;
+    background-color: rgb(217, 215, 215);
+}
+
+.Mem_Trans_Main{
+    width: 95%; 
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+}
+
+.Mem_Trans_OrderStatus{
+    text-align: end;
+    position: relative;
+    float: right;
+    margin-top: 8px;
+}
+
+.Mem_Trans_OrderStatusDecoration{
+    text-align: justify; /* 使文本两端对齐 */
+    line-height: 12px;
+}
+
+.Mem_Trans_OrderStatusDecoration:after{
+    content: ''; /* 插入一个空内容 */
+    display: inline-block;
+    width: 100%; /* 占满一行 */
+}
+
+.Mem_Trans_Items{
+    padding: 20px;
+    width: 70%;
+    
+}
+
+
+.Mem_Trans_CartItem{
+    margin-bottom: 15px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Mem_Trans_CartItem img{
+    max-height: 90px;
+    max-width: 90px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: left;
+
+}
+
+.Mem_Trans_CartItem a{
+    text-decoration: none;
+    color: black;
+}
+
+.Mem_Trans_Totalprice{
+    text-align: end;
+    font-size: 20px;
+}
+
+.Mem_Trans_divider2{
+    width: 1%;
+    background-color: rgb(217, 215, 215);
+}
+
+.Mem_Trans_Rating{
+    padding: 20px;
+    width: 29%;
+}
+
+.Mem_Trans_Rating_Title span{
+    background-color: #696969;
+    padding: 5px 12px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+}
+
+.Mem_OrderManage textarea{
+    border: rgb(205, 205, 205) 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    height: 160px;
+    margin: 5px auto 1px auto;
+}
+
+.Mem_OrderManage textarea:focus{
+    outline: #c2dbfe 4px solid;
+    border: #86b7fe 1px solid;
+}
+
+.Mem_OrderManage p{
+    color: red;
+    text-align: right;
+    margin: 0;
+    font-size: 15px;
+    
+}
+
+.Mem_Trans_RatingForm_Submit{
+    text-align: end;
+    font-size: 15px;
+    color: white;
+    padding: 3px 8px;
+    margin-top: 5px;
+}

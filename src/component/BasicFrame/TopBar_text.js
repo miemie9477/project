@@ -1,12 +1,81 @@
 import "./css/frame.css"
-import Dropdown from 'react-bootstrap/Dropdown';
-import NavItem from 'react-bootstrap/NavItem';
 import logo from "./pic/logo.png"
 import Button from 'react-bootstrap/Button';
 import { NavLink } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
+import { useContext } from 'react';
+import { LoginContext } from "../../ContextAPI";
+import Dropdown from 'react-bootstrap/Dropdown';
+import NavItem from 'react-bootstrap/NavItem';
+import { useNavigate } from 'react-router-dom';
+
 
 const TopBarText = () => {
+    const { login, setLogin } = useContext(LoginContext);
+    const navigate = useNavigate();
+    
+    const LogOut = () =>{
+        setLogin(0);
+        navigate('/');
+    }    
+
+    const MemberBackstage = () =>{
+        navigate('/MemberPage')
+    }
+
+    const AdminBackstage = () =>{
+        navigate('/AdminPage')
+    }
+    
+    const LoginIdentity1 = () =>
+    {
+        if(login === 0) return(
+            <NavLink to="/LoginPage">登入</NavLink>
+        )
+        else if(login === 1) return(
+            <div>
+                <Dropdown as={NavItem}>
+                    <Dropdown.Toggle as={NavLink} >會員專區</Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={MemberBackstage}>會員管理</Dropdown.Item>
+                        <Dropdown.Divider></Dropdown.Divider>
+                        <Dropdown.Item onClick={LogOut}>登出</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
+
+        )
+        else if(login === 2) return (
+            <div>
+                <Dropdown as={NavItem}>
+                    <Dropdown.Toggle as={NavLink} >管理者專區</Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={AdminBackstage}>後台管理</Dropdown.Item>
+                        <Dropdown.Divider></Dropdown.Divider>
+                        <Dropdown.Item onClick={LogOut}>登出</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
+
+        )
+    }
+
+    const LoginIdentity2 = () =>
+    {
+        if(login === 0) return(
+            <NavLink to="/LoginPage"><Button variant="outline-light"><CiShoppingCart size={22}/></Button></NavLink>
+        )
+        else if(login === 1) return(
+            <NavLink to="/CartPage"><Button variant="outline-light"><CiShoppingCart size={22}/></Button></NavLink>
+
+        )
+        // else if(login === 2) return (
+            
+
+        // )
+    }
+    
+
     return(
         <>
             <div className="TopBarListCss">
@@ -18,10 +87,11 @@ const TopBarText = () => {
                 </div>
                 <div className="TopBarTextRightCss">
                     <div className="RightCss">
-                        <NavLink to="/LoginPage">登入</NavLink>
+                        {LoginIdentity1()}
+                        
                     </div>
                     <div className="CartCss">
-                        <NavLink to="/CartPage"><Button variant="outline-light"><CiShoppingCart size={22}/></Button></NavLink>
+                        {LoginIdentity2()}
                     </div>
                 </div>
             </div>
@@ -32,41 +102,7 @@ const TopBarText = () => {
         </>
     );
 }
-const MemberLog = () =>{
-    return(
-        <div>
-            <Dropdown as={NavItem}>
-                <Dropdown.Toggle as={NavLink} >會員專區</Dropdown.Toggle>
-                <Dropdown.Menu>
-                    <Dropdown.Item>修改會員資料</Dropdown.Item>
-                    <Dropdown.Item>查看訂單</Dropdown.Item>
-                    <Dropdown.Item>查看購物車</Dropdown.Item>
-                    <Dropdown.Divider></Dropdown.Divider>
-                    <Dropdown.Item>登出</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-        </div>
 
-    );
-}
-
-const AdminLog = () =>{
-    return(
-        <div>
-            <Dropdown as={NavItem}>
-                <Dropdown.Toggle as={NavLink} >管理者專區</Dropdown.Toggle>
-                <Dropdown.Menu>
-                    <Dropdown.Item>會員管理</Dropdown.Item>
-                    <Dropdown.Item>訂單管理</Dropdown.Item>
-                    <Dropdown.Item>商品管理</Dropdown.Item>
-                    <Dropdown.Divider></Dropdown.Divider>
-                    <Dropdown.Item>登出</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-        </div>
-
-    );
-}
 
 
 export default TopBarText

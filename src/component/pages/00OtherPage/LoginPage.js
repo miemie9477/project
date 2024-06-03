@@ -1,17 +1,18 @@
-import TopBarText from "../../BasicFrame/TopBar_text";
-import Category from "../../BasicFrame/TopCategory";
-import BottomBar from "../../BasicFrame/BottomBar";
-
+import Frame from "../../BasicFrame/frame";
 import LoginBox from "./LoginBox";
-
+import React, { useState } from 'react';
 
 const LoginPage = () =>{
+    // const [login, setLogin] = useState(0);
+
     return(
         <div style={{position:"relative"}}>
-            <TopBarText />
-            <Category />   
+            
+
+            <Frame/>
+
             <LoginBox/>
-            <BottomBar/>
+            
         </div>
         
     );

@@ -1,17 +1,40 @@
 import wine from "./pic/GORDON_S.png"
 import { useState } from "react";
+import { useContext } from 'react';
+import { LoginContext } from "../../../../ContextAPI";
+import { useNavigate } from 'react-router-dom';
+
 import "./css/Details.css"
 
 
 const Details = () => {
+    const { login, setLogin } = useContext(LoginContext);
+    const navigate = useNavigate();
+
     const [Mer_num, setMer_num] = useState(0);
     const Mer_Minus = () =>{
-        if(Mer_num>0) setMer_num(Mer_num - 1)
-        else setMer_num(0)
+        if(Mer_num > 1) setMer_num(Mer_num - 1)
+        else setMer_num(1)
     }
 
     const Mer_Add = () =>{
         setMer_num(Mer_num + 1)
+    }
+    
+    const LoginIdentity1 = () =>
+    {
+        if(login === 0) 
+        {
+            navigate('/LoginPage');
+        }
+        // else if(login === 1) 
+        // {
+
+        // }
+        // else if(login === 2) 
+        // {
+            
+        // }
     }
 
     return(
@@ -31,7 +54,7 @@ const Details = () => {
                                 <div className="Mer_dtl4_ctr_num">{Mer_num}</div>
                                 <div className="Mer_dtl4_ctr_add"><button onClick={Mer_Add}>+</button ></div>
                             </div>
-                            <div className="Mer_dtl4_addtocart"><button>加入購物車</button></div>
+                            <div className="Mer_dtl4_addtocart"><button onClick={LoginIdentity1}>加入購物車</button></div>
                         </div>
                         <br/>
                         <div className="Mer_details_5">品牌　　　|　Gordon's Gin 高登琴酒</div>

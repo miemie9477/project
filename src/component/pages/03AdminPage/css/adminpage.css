@@ -1,0 +1,9 @@
+.AdminBodyCss{
+    background-color: rgb(217, 215, 215);
+    width: 100%;
+    z-index: 0;
+    
+}
+.table{
+    text-align: left;
+}
