@@ -36,6 +36,7 @@
 # Todo
 - [ ] 完成所有商品頁面(請參考 [商品型錄](https://drive.google.com/drive/folders/1So-jHqpJI1xz-dBw0ushkfMkICtQRrI6?usp=sharing) )
 - [ ] 完成商品詳細頁面
+- [ ] 購物車
 - [ ] 搜尋欄
 - [ ] Admin
 - [ ] 會員資料修改區
