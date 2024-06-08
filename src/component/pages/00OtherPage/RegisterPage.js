@@ -43,113 +43,102 @@ const RegisterForm = () =>{
     };
 
     const mAccount = watch("registerAccount");
-    const checkAccount = async () =>{
-        console.log("check :" + mAccount)
-        if(typeof mAccount !== 'undefined'){
-            const url = "http://localhost:3001/register/account"
-            await axios.post(url, {mAccount})
-            .then(
-                response =>{
-                    if(response.data.result === "mAccount exist"){
-                        console.log(mAccount + " " + response.data.result)
-                        setError("registerAccount",{type:"custom", message:"帳號已存在"});
-                        return false;
-                    }
-                    console.log("check : Account")
-                    clearErrors("registerAccount");
-                    return true;
-                    
+    const checkAccount = async () => {
+        console.log("check :" + mAccount);
+        if (typeof mAccount !== 'undefined') {
+            const url = "http://localhost:3001/register/account";
+            try {
+                const response = await axios.post(url, { mAccount });
+                if (response.data.result === "mAccount exist") {
+                    console.log(mAccount + " " + response.data.result);
+                    setError("registerAccount", { type: "custom", message: "帳號已存在" });
+                    return false;
                 }
-            ).catch( 
-                error =>{
-                    console.log(error);
-                }
-            )
+                console.log("check : Account");
+                clearErrors("registerAccount");
+                return true;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
         }
+        return false;
     }
 
     const pId = watch('registerPId');
-    const checkPId = async () =>{
-        console.log("check :" + pId)
-        if (typeof pId !== 'undefined'){
-            const url = "http://localhost:3001/register/pId"
-            await axios.post(url, {pId})
-            .then(
-                response =>{
-                    if(response.data.result === "pId exist"){
-                        setError("registerPId",{type:"custom", message:"身分證字號已註冊"})
-                        return false;
-                    }
-                    console.log("check : PId")
-                    clearErrors("registerPId");
-                    return true;
+    const checkPId = async () => {
+        console.log("check :" + pId);
+        if (typeof pId !== 'undefined') {
+            const url = "http://localhost:3001/register/pId";
+            try {
+                const response = await axios.post(url, { pId });
+                if (response.data.result === "pId exist") {
+                    setError("registerPId", { type: "custom", message: "身分證字號已註冊" });
+                    return false;
                 }
-            ).catch( 
-                error =>{
-                    console.log(error);
-                }
-            )
+                console.log("check : PId");
+                clearErrors("registerPId");
+                return true;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
         }
+        return false;
     }
-    
+
     const email = watch('registerEmail');
-    const checkEmail = async () =>{
-        console.log("check :" + email)
-        if (typeof email !== 'undefined'){
-            const url = "http://localhost:3001/register/email"
-            await axios.post(url, {email})
-            .then(
-                response =>{
-                    if(response.data.result === "email exist"){
-                        setError("registerEmail",{type:"custom", message:"電子郵件已註冊"})
-                        return false;
-                    }
-                    console.log("check : Email")
-                    clearErrors("registerEmail");
-                    return true;
-                    
+    const checkEmail = async () => {
+        console.log("check :" + email);
+        if (typeof email !== 'undefined') {
+            const url = "http://localhost:3001/register/email";
+            try {
+                const response = await axios.post(url, { email });
+                if (response.data.result === "email exist") {
+                    setError("registerEmail", { type: "custom", message: "電子郵件已註冊" });
+                    return false;
                 }
-            ).catch( 
-                error =>{
-                    console.log(error);
-                }
-            )
+                console.log("check : Email");
+                clearErrors("registerEmail");
+                return true;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
         }
+        return false;
     }
 
     const phone = watch('registerPhone');
-    const checkPhone = async () =>{
-        console.log("check :" + phone)
-        if (typeof phone !== 'undefined'){
-            const url = "http://localhost:3001/register/phone"
-            await axios.post(url, {phone})
-            .then(
-                response =>{
-                    if(response.data.result === "phone exist"){
-                        setError("registerPhone",{type:"custom", message:"門號已註冊"})
-                        return false;
-                    }
-                    console.log("check : phone")
-                    clearErrors("registerPhone");
-                    return true;
-                    
+    const checkPhone = async () => {
+        console.log("check :" + phone);
+        if (typeof phone !== 'undefined') {
+            const url = "http://localhost:3001/register/phone";
+            try {
+                const response = await axios.post(url, { phone });
+                if (response.data.result === "phone exist") {
+                    setError("registerPhone", { type: "custom", message: "門號已註冊" });
+                    return false;
                 }
-            ).catch( 
-                error =>{
-                    console.log(error);
-                }
-            )
+                console.log("check : phone");
+                clearErrors("registerPhone");
+                return true;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
         }
+        return false;
     }
 
     const onSubmit = async (data) => {
 
-        const passwordsValid = validatePasswords();
-        const accountValid = checkAccount();
-        const pIdValid = checkPId();
-        const emailValid = checkEmail();
-        const phoneValid = checkPhone();
-
+        const passwordsValid = await validatePasswords();
+        const accountValid = await checkAccount();
+        const pIdValid = await checkPId();
+        const emailValid =await checkEmail();
+        const phoneValid =await checkPhone();
+        console.log(passwordsValid + " " + accountValid + " " + pIdValid + " " + emailValid + " " + phoneValid)
         if (passwordsValid && accountValid && pIdValid && emailValid && phoneValid) {
             console.log("All validations passed");
             const registerInfo ={

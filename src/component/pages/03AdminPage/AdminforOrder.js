@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import AdminforMemberForms from "./AdminforMemberForms";
 
-const AdminforMember = () =>{
+const AdminforOrder = () =>{
     const [members, setMembers] = useState([]);
 
     useEffect(() =>{
@@ -31,6 +31,10 @@ const AdminforMember = () =>{
         )
     }, [])
 
+    useEffect(() =>{
+
+    })
+
 
     return(
     <div className="AdminBodyCssBG">
@@ -41,7 +45,7 @@ const AdminforMember = () =>{
                 <Row>
                     <Col>
                         <div></div>
-                        <div className="Admin_Mem_TitleText">會員資料表</div>
+                        <div className="Admin_Mem_TitleText">訂單資料表</div>
                         <div className='Admin_Mem_line'></div>
                         <table className="Admin_Mem_MemTable">
                             <tr>
@@ -59,16 +63,16 @@ const AdminforMember = () =>{
                                 
                             </tr>
                             {/* <tr>
-                                <td>a0000001</td>
-                                <td>Member01</td>
-                                <td>B000000000</td>
-                                <td>member@gmail.com</td>
-                                <td>F</td>
-                                <td>localhost3000</td>
-                                <td>0900000000</td>
-                                <td>2024-05-25</td>
-                                <td>member</td>
-                                <td>member123456</td>
+                                    <td>a0000001</td>
+                                    <td>Member01</td>
+                                    <td>B000000000</td>
+                                    <td>member@gmail.com</td>
+                                    <td>F</td>
+                                    <td>localhost3000</td>
+                                    <td>0900000000</td>
+                                    <td>2024-05-25</td>
+                                    <td>member</td>
+                                    <td>member123456</td>
                             </tr> */}
                             {members.map(member => (
                             <tr key={member.mId}>
@@ -97,4 +101,4 @@ const AdminforMember = () =>{
     );
 }
 
-export default AdminforMember;
+export default AdminforOrder;

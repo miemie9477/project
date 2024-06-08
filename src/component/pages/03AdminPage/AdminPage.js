@@ -1,6 +1,8 @@
 import "./css/adminpage.css";
 import Frame from "../../BasicFrame/frame";
 import AdminforMember from "./AdminforMember";
+import AdminforMerchandise from "./AdminforMerchandise";
+import AdminforOrder from "./AdminforOrder";
 
 
 
@@ -11,6 +13,8 @@ const AdminPage = () =>{
             <Frame/>
             <AdminforMember />
             
+            <AdminforOrder />
+            <AdminforMerchandise />
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         </div>
     );

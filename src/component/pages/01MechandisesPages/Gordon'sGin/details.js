@@ -1,17 +1,62 @@
 import wine from "./pic/GORDON_S.png"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from 'react';
 import { LoginContext } from "../../../../ContextAPI";
 import { useNavigate } from 'react-router-dom';
-
+import axios from "axios";
+import { AccountContext } from "../../../../ContextAPI";
 import "./css/Details.css"
 
 
-const Details = () => {
-    const { login, setLogin } = useContext(LoginContext);
-    const navigate = useNavigate();
 
-    const [Mer_num, setMer_num] = useState(0);
+const Details = ({pNo}) => {
+    
+    const { login, setLogin } = useContext(LoginContext);
+    const { userAccount, setUserAccount} = useContext(AccountContext);
+    const navigate = useNavigate();
+    var [productInfo, setProductInfo]= useState({
+        pNo:"",
+        pName:"",
+        specification:"",
+        brand: "",
+        category:"",
+        unitPrice:"",
+        pIntroduction:"",
+        pAmount:""
+    });
+
+    useEffect(() =>{
+        
+        const url = `http://localhost:3001/pDetail/getDetail/${pNo}`
+        axios.get(url)
+        .then(
+            response =>{
+                if(response.data.length > 0){
+                    setProductInfo({
+                        pNo:response.data[0].pNo,
+                        pName:response.data[0].pName,
+                        specification:response.data[0].specification,
+                        brand: response.data[0].brand,
+                        category:response.data[0].category,
+                        unitPrice:response.data[0].unitPrice,
+                        pIntroduction:response.data[0].pIntroduction,
+                        pAmount:response.data[0].pAmount
+                    })
+                }
+                
+            }
+        ).catch(
+            error =>{
+                console.log(error);
+            }
+        )
+    }, [])
+    
+    useEffect(() =>{
+        console.log(productInfo);
+    },[productInfo]);
+
+    const [Mer_num, setMer_num] = useState(1);
     const Mer_Minus = () =>{
         if(Mer_num > 1) setMer_num(Mer_num - 1)
         else setMer_num(1)
@@ -21,21 +66,81 @@ const Details = () => {
         setMer_num(Mer_num + 1)
     }
     
-    const LoginIdentity1 = () =>
+    
+    const LoginIdentity1 = async () =>
     {
-        if(login === 0) 
-        {
+        if(login === 0) {
+            alert("請先登入");
             navigate('/LoginPage');
         }
-        // else if(login === 1) 
-        // {
-
-        // }
-        // else if(login === 2) 
-        // {
+        else if(login === 1) {
+            console.log("userAccount:"+ userAccount)
             
-        // }
+            const url = "http://localhost:3001/cart/checkExist"
+            axios.post(url, {userAccount})
+            .then(
+                response =>{
+                    console.log("data:", response.data.tId);
+                    
+                    if(response.data.result === "ready"){
+                        console.log(response.data.tId);
+                        var tId = response.data.tId;
+                        console.log("tId:", tId);
+                        AddCart(tId);
+                    }
+                    else{
+                        console.log("錯誤");
+                    }
+                }
+            ).catch(
+                error =>{
+                    console.log(error);
+                }
+            )
+        }
+        else if(login === 2) {
+            alert("若欲下單，請使用一般會員帳號登入")
+        }
     }
+
+    
+    const AddCart = async (tId) =>{
+        const url = "http://localhost:3001/cart/add"
+        
+        const reqInfo={
+            tId: tId,
+            pNo: productInfo.pNo,
+            amount: Mer_num,
+            salePrice: parseInt(productInfo.unitPrice, 10) * Mer_num
+        }
+            console.log(reqInfo)
+            if(reqInfo.amount > productInfo.pAmount){
+                alert("已超出庫存數量。目前庫存數:", productInfo.pAmount);
+            }
+            else if(reqInfo.amount === 0){
+                alert("請新增要加入購物車的數量");
+            }
+            else{ 
+                console.log("Adding");
+                await axios.post(url, reqInfo)
+                .then(
+                    response =>{
+                        if(response.data.result === "Add"){
+                            console.log(response.data);
+                            alert("已新增至購物車");
+                        }else{
+                            console.log(response.data);
+                            alert("Error");
+                        }
+                    }
+                )
+                .catch(
+                    error =>{
+                        console.log(error)
+                    }
+                )
+            }
+        }
 
     return(
         <div className="Mer_background">

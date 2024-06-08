@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from 'react';
 import { LoginContext, AccountContext} from "../../../ContextAPI";
@@ -17,6 +17,12 @@ const LoginBox = () =>{
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
     
+    useEffect(() => {
+        if (userAccount) {
+            console.log("mId:", userAccount);
+            navigate('/');
+        }
+    }, [userAccount]);
 
     const onSubmit = (data) => {
         
@@ -40,11 +46,11 @@ const LoginBox = () =>{
                         navigate('/AdminPage');
                     }
                     else {
-                        console.log("account:" + data.inputAccount);
-                        setUserAccount(data.inputAccount);
+                        console.log(response.data[0].mId)
+                        setUserAccount(response.data[0].mId);
+                        
                         console.log("驗證成功");
                         setLogin(1);
-                        navigate('/');
                         //消費者直接跳轉到主畫面會比較合理，要促進消費者購物
                     }
                 }

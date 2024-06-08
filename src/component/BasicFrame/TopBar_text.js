@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 import { useContext } from 'react';
-import { LoginContext } from "../../ContextAPI";
+import { LoginContext, AccountContext } from "../../ContextAPI";
 import Dropdown from 'react-bootstrap/Dropdown';
 import NavItem from 'react-bootstrap/NavItem';
 import { useNavigate } from 'react-router-dom';
@@ -12,10 +12,12 @@ import { useNavigate } from 'react-router-dom';
 
 const TopBarText = () => {
     const { login, setLogin } = useContext(LoginContext);
+    const { userAccount, setUserAccount} = useContext(AccountContext);
     const navigate = useNavigate();
     
     const LogOut = () =>{
         setLogin(0);
+        setUserAccount("");
         navigate('/');
     }    
 
@@ -35,7 +37,7 @@ const TopBarText = () => {
         else if(login === 1) return(
             <div>
                 <Dropdown as={NavItem}>
-                    <Dropdown.Toggle as={NavLink} >會員專區</Dropdown.Toggle>
+                    <Dropdown.Toggle as={NavLink}>會員專區</Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={MemberBackstage}>會員管理</Dropdown.Item>
                         <Dropdown.Divider></Dropdown.Divider>

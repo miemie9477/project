@@ -9,15 +9,16 @@ const TestCss = {
 }
 
 const GordonsGin = () => {
+    const pNo = "a10010";
     return(
         <div>
             <div style={TestCss}>
             <Frame/>
-            <Details />
+            <Details pNo={pNo}/>
             <br/><br/><br/><br/>
             <QandA />
             <br/><br/><br/>
-            <Comments />
+            <Comments pNo={pNo}/>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
         </div>

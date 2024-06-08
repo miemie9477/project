@@ -8,14 +8,40 @@ import { HiPlus } from "react-icons/hi2";
 import { HiMinus } from "react-icons/hi2";
 import { CiTrash } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useContext } from 'react';
+import { AccountContext} from "../../../ContextAPI";
+import axios from "axios";
 
 const CartBody = () =>{
-
+    
+    const { userAccount, setUserAccount} = useContext(AccountContext);
+    var userMId;
     function handleClick(){
 
     }
+
+    useEffect(() =>{
+        
+        const url = `http://localhost:3001/cart/getItem/${userAccount}`
+        axios.get(url)
+        .then(
+            response =>{
+                if(response.result === "null"){
+                    alert("您尚未新增物品至購物車");
+                }
+                else{
+                    console.log(response.data)
+                }
+            }
+        )
+        .catch(
+            (error) =>{
+                console.log(error);
+            }
+        )
+    }, [])
+    
 
     return(
         <div className="CartBodyCss">
@@ -48,7 +74,7 @@ const Item = () =>{
     const [Cart_num, setCart_num] = useState(0);
     const Cart_Minus = () =>{
         if(Cart_num>0) setCart_num(Cart_num - 1)
-        else setCart_num(0)
+        else setCart_num(1)
     }
 
     const Cart_Add = () =>{
@@ -74,8 +100,8 @@ const Item = () =>{
                 <Button variant="secondary" name="minusBtn" className="minus" onClick={Cart_Minus}><HiMinus size={14} color="black"/></Button>
                 <Button variant="outline-secondary" name="amount" disabled style={{color:"black", paddingLeft:"16px",paddingRight:"16px"}}>{Cart_num}</Button>
                 <Button variant="secondary" name="plusBtn" className="plus" onClick={Cart_Add}><HiPlus size={14} color="black"/></Button>
-
             </div>
+            
         </div>
     );
 }

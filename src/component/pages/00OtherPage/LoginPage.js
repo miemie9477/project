@@ -7,10 +7,8 @@ const LoginPage = () =>{
 
     return(
         <div style={{position:"relative"}}>
-            
 
             <Frame/>
-
             <LoginBox/>
             
         </div>

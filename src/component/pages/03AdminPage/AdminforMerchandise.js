@@ -7,19 +7,19 @@ import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import AdminforMemberForms from "./AdminforMemberForms";
 
-const AdminforMember = () =>{
+const AdminforMerchandise = () =>{
     const [members, setMembers] = useState([]);
 
     useEffect(() =>{
-        const url = "http://localhost:3001/modifyAdminSide/viewMember"
+        const url = "http://localhost:3001/modifyAdminSide/viewMerchandise"
         axios.get(url)
         .then(
             response =>{
-                if(response.data.result === "Found no data"){
-                    console.log("no data")
+                if(response.data.result === "error"){
+                    console.log("error")
                 }
                 else{
-                    console.log(response.data);
+                    console.log("test:", response.data[0]);
                     setMembers(response.data);
                 }
             }
@@ -41,7 +41,7 @@ const AdminforMember = () =>{
                 <Row>
                     <Col>
                         <div></div>
-                        <div className="Admin_Mem_TitleText">會員資料表</div>
+                        <div className="Admin_Mem_TitleText">商品資料表</div>
                         <div className='Admin_Mem_line'></div>
                         <table className="Admin_Mem_MemTable">
                             <tr>
@@ -70,9 +70,9 @@ const AdminforMember = () =>{
                                 <td>member</td>
                                 <td>member123456</td>
                             </tr> */}
-                            {members.map(member => (
+                            {/* </table>{members.map(member => (
                             <tr key={member.mId}>
-                                {/* <td className="Admin_Mem_MemNum"><textarea type="text" >{member.mId}</textarea></td>
+                                {<td className="Admin_Mem_MemNum"><textarea type="text" >{member.mId}</textarea></td>
                                 <td className="Admin_Mem_MemName"><textarea type="text" >{member.mName}</textarea></td>
                                 <td className="Admin_Mem_MemID"><textarea type="text" >{member.pId}</textarea></td>
                                 <td className="Admin_Mem_MemEmail"><textarea type="text" >{member.email}</textarea></td>
@@ -82,10 +82,10 @@ const AdminforMember = () =>{
                                 <td className="Admin_Mem_MemAccount"><textarea type="text" >{member.mAccount}</textarea></td>
                                 <td className="Admin_Mem_MemPwd"><textarea type="text" >{member.mPwd}</textarea></td>
                                 <td className="Admin_Mem_Modify"><Button variant="info">修改</Button></td>
-                                <td className="Admin_Mem_Delete"><Button variant="danger">刪除</Button></td> */}
-                                <AdminforMemberForms member={member} />
+                                <td className="Admin_Mem_Delete"><Button variant="danger">刪除</Button></td> }
+                               </table> <AdminforMemberForms member={member} />
                             </tr>
-                            ))}
+                            ))} */}
                         </table>
                     </Col>
                 </Row>
@@ -97,4 +97,4 @@ const AdminforMember = () =>{
     );
 }
 
-export default AdminforMember;
+export default AdminforMerchandise;

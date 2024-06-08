@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import "./css/QandA.css"
 
-const QandA = () => {
+const QandA = ({pNo}) => {
+
+    
+
     return (
     <div className="QA_background">
         <div className="QA_title">常見訂單與退貨問題</div>
