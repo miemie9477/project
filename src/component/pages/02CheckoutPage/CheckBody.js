@@ -86,7 +86,7 @@ const CheckBody = () =>{
                                             {...register("Check_BankName", {required: true})} />
                                             
                                             <div>　　</div> 
-                                            <input type="number" name="Check_BankCode" id="Check_BankCode"  
+                                            <input type="text" name="Check_BankCode" id="Check_BankCode"  
                                             {...register("Check_BankCode", {required: true, maxLength: {value: 3, message: "銀行代碼過長"}, minLength: {value: 3, message: "銀行代碼過短"}})} />
                                             
 
@@ -98,12 +98,12 @@ const CheckBody = () =>{
                                     </div>
 
                                     <b>信用卡號</b>
-                                    <input type="number" name="Check_CreditcardNumber" id="Check_CreditcardNumber" 
+                                    <input type="text" name="Check_CreditcardNumber" id="Check_CreditcardNumber" 
                                     {...register("Check_CreditcardNumber", {required: true})} />
                                     {!!errors.Check_CreditcardNumber && <p>{errors.Check_CreditcardNumber.message.toString() || "請輸入信用卡號"}</p> }
 
-                                    <b>安全碼</b>
-                                    <input type="number" name="Check_CreditcardCVC" id="Check_CreditcardCVC"  
+                                    <b>安全碼</b>ff
+                                    <input type="text" name="Check_CreditcardCVC" id="Check_CreditcardCVC"  
                                     {...register("Check_CreditcardCVC", {required: true, maxLength: {value: 3, message: "安全碼過長"}, minLength: {value: 3, message: "安全碼過短"}})} />
                                     {!!errors.Check_CreditcardCVC && <p>{errors.Check_CreditcardCVC.message.toString() || "請輸入安全碼"}</p> }
 
