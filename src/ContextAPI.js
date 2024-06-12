@@ -22,3 +22,15 @@ export const AccountProvider = ({ children }) =>{
     </AccountContext.Provider>
   )
 }
+
+export const OrdertotalContext = createContext();
+export const OrdertotalProvider = ({ children }) =>{
+  const [userOrdertotal, setUserOrdertotal] = useState(0);
+
+  return(
+    <OrdertotalContext.Provider value={{userOrdertotal, setUserOrdertotal}}>
+      {children}
+    </OrdertotalContext.Provider>
+  )
+}
+

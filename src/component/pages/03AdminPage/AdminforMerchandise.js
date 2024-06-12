@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
-import AdminforMemberForms from "./AdminforMemberForms";
+import AdminforMerchandiseForms from "./AdminforMerchandiseForms";
 
 const AdminforMerchandise = () =>{
     const [members, setMembers] = useState([]);
@@ -33,7 +33,7 @@ const AdminforMerchandise = () =>{
 
 
     return(
-    <div className="AdminBodyCssBG">
+    <div style={{height:"2500px"}} className="AdminBodyCssBG">
         <br />
         <div className="AdminBodyCss" >
             
@@ -41,51 +41,39 @@ const AdminforMerchandise = () =>{
                 <Row>
                     <Col>
                         <div></div>
-                        <div className="Admin_Mem_TitleText">商品資料表</div>
-                        <div className='Admin_Mem_line'></div>
-                        <table className="Admin_Mem_MemTable">
+                        <div className="Admin_Mer_TitleText">商品資料表</div>
+                        <div className='Admin_Mer_line'></div>
+                        <table className="Admin_Mer_MerTable">
                             <tr>
-                                <th className="Admin_Mem_MemNum">會員編號</th>
-                                <th className="Admin_Mem_MemName">姓名</th>
-                                <th className="Admin_Mem_MemID">身分證字號</th>
-                                <th className="Admin_Mem_MemEmail">Email</th>
-                                <th className="Admin_Mem_MemSex">性別</th>
-                                <th className="Admin_Mem_MemPhone">手機號碼</th>
-                                <th className="Admin_Mem_MemBirth">生日</th>
-                                <th className="Admin_Mem_MemAccount">帳號</th>
-                                <th className="Admin_Mem_MemPwd">密碼</th>
-                                <th className="Admin_Mem_Modify"></th>
-                                <th className="Admin_Mem_Delete"></th>
+                                <th className="Admin_Mer_MerNum">商品編號</th>
+                                <th className="Admin_Mer_MerName">商品名稱</th>
+                                <th className="Admin_Mer_MerBrand">品牌</th>
+                                <th className="Admin_Mer_MerCategory">分類</th>
+                                <th className="Admin_Mer_MerSpecification">規格</th>
+                                <th className="Admin_Mer_MerUnitprice">單價</th>
+                                <th className="Admin_Mer_MerIntro">商品簡介</th>
+                                <th className="Admin_Mer_MerAccount">存貨數</th>
+                                <th className="Admin_Mer_Modify"></th>
+                                <th className="Admin_Mer_Delete"></th>
+
                                 
                             </tr>
-                            {/* <tr>
-                                <td>a0000001</td>
-                                <td>Member01</td>
-                                <td>B000000000</td>
-                                <td>member@gmail.com</td>
-                                <td>F</td>
-                                <td>localhost3000</td>
-                                <td>0900000000</td>
-                                <td>2024-05-25</td>
-                                <td>member</td>
-                                <td>member123456</td>
-                            </tr> */}
-                            {/* </table>{members.map(member => (
-                            <tr key={member.mId}>
-                                {<td className="Admin_Mem_MemNum"><textarea type="text" >{member.mId}</textarea></td>
-                                <td className="Admin_Mem_MemName"><textarea type="text" >{member.mName}</textarea></td>
-                                <td className="Admin_Mem_MemID"><textarea type="text" >{member.pId}</textarea></td>
-                                <td className="Admin_Mem_MemEmail"><textarea type="text" >{member.email}</textarea></td>
-                                <td className="Admin_Mem_MemSex"><textarea type="text" >{member.gender}</textarea></td>
-                                <td className="Admin_Mem_MemPhone"><textarea type="text" >{member.phone}</textarea></td>
-                                <td className="Admin_Mem_MemBirth"><textarea type="text" >{member.birthday.split('T')[0]}</textarea></td>
-                                <td className="Admin_Mem_MemAccount"><textarea type="text" >{member.mAccount}</textarea></td>
-                                <td className="Admin_Mem_MemPwd"><textarea type="text" >{member.mPwd}</textarea></td>
-                                <td className="Admin_Mem_Modify"><Button variant="info">修改</Button></td>
-                                <td className="Admin_Mem_Delete"><Button variant="danger">刪除</Button></td> }
-                               </table> <AdminforMemberForms member={member} />
+
+                            {members.map(member => (
+                            <tr key={member.pNo}>
+                                {/* <td className="Admin_Mer_MerNum"><textarea type="text" >{member.pNo}</textarea></td>
+                                <td className="Admin_Mer_MerName"><textarea type="text" >{member.pName}</textarea></td>
+                                <td className="Admin_Mer_MerBrand"><textarea type="text" >{member.brand}</textarea></td>
+                                <td className="Admin_Mer_MerCategory"><textarea type="text" >{member.category}</textarea></td>
+                                <td className="Admin_Mer_MerSpecification"><textarea type="text" >{member.Specification}</textarea></td>
+                                <td className="Admin_Mer_MerUnitprice"><textarea type="text" >{member.unitPrice}</textarea></td>
+                                <td className="Admin_Mer_MerIntro"><textarea type="text" >{member.pIntroduction}</textarea></td>
+                                <td className="Admin_Mer_MerAccount"><textarea type="text" >{member.pAmount}</textarea></td>
+                                <td className="Admin_Mer_Modify"><Button variant="info">修改</Button></td>
+                                <td className="Admin_Mer_Delete"><Button variant="danger">刪除</Button></td>  */}
+                               <AdminforMerchandiseForms member={member} />
                             </tr>
-                            ))} */}
+                            ))}
                         </table>
                     </Col>
                 </Row>

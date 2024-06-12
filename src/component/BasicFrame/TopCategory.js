@@ -16,14 +16,17 @@ const Category = () => {
 
     const onSubmit = (data) =>{
         //自己把下面搜尋結果填進 keyword
-        const keyword = "o"
+        const keyword = data.Search;
+        console.log(keyword);
         const url = `http://localhost:3001/pDetail/search/${keyword}`
         axios.get(url)
         .then(
             response =>{
-                console.log(response.data);
-                console.log("get one line of the data:" , response.data[0])
-                console.log("get brand Eng part: ", extractEnglish(response.data[0].brand))
+                if(response.data.length > 0){
+                    console.log(response.data);
+                    console.log("get data:" , response.data)
+                    console.log("get brand Eng part: ", extractEnglish(response.data[0].brand))
+                }
             }
         )                                                       
     }
@@ -58,18 +61,25 @@ const Category = () => {
 
             <div className="searchCol">
                 
-                <form name="SelectForm">
-                    <InputGroup  className="mb-10">
-                        <Form.Control
-                            {...register("Search")}
-                            type="text"
-                            placeholder="Search"
-                            aria-label="Search"
-                            className=" mr-sm-2"
-                        />
-                        <NavLink to="#"><Button className="w-90 p-50" variant="outline-secondary" id="button-addon2"  onClick={onSubmit}><CiSearch /></Button></NavLink>
-                    </InputGroup>
-                </form>
+            <form name="SelectForm" onSubmit={handleSubmit(onSubmit)}>
+                <InputGroup className="mb-10">
+                    <Form.Control
+                    {...register("Search")}
+                    type="text"
+                    placeholder="Search"
+                    aria-label="Search"
+                    className="mr-sm-2"
+                    />
+                    <Button
+                    type="submit"
+                    className="w-90 p-50"
+                    variant="outline-secondary"
+                    id="button-addon2"
+                    >
+                    <CiSearch />
+                    </Button>
+                </InputGroup>
+            </form>
             </div>
         
         </div>

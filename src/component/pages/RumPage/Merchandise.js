@@ -14,7 +14,7 @@ const Merchandise = () =>{
     return(
         <div className='Merchandise'>
             
-            <NavLink to="#">
+            <NavLink to="/RumPage/d16230">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine1} alt="酒" /> </div>
                     <div className='countryname'>Bacardi</div>
@@ -27,7 +27,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            {/* <NavLink to="#">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine2} alt="酒" /> </div>
                     <div className='countryname'>Bacardi</div>
@@ -51,9 +51,9 @@ const Merchandise = () =>{
                         <div className='price'>$ 1,100</div>
                     </div>
                 </div>
-            </NavLink>
+            </NavLink> */}
 
-            <NavLink to="#">
+            <NavLink to="/RumPage/d27788">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine4} alt="酒" /> </div>
                     <div className='countryname'>Havana Club</div>
@@ -66,7 +66,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/RumPage/d35566">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine5} alt="酒" /> </div>
                     <div className='countryname'>Bayou</div>
@@ -79,7 +79,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/RumPage/d42211">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine6} alt="酒" /> </div>
                     <div className='countryname'>CAPTAIN MORGAN</div>
@@ -92,7 +92,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/RumPage/d57400">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine7} alt="酒" /> </div>
                     <div className='countryname'>Flor De Cana</div>
@@ -105,7 +105,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/RumPage/d62020">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine8} alt="酒" /> </div>
                     <div className='countryname'>Mount Gay Rum</div>

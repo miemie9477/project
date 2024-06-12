@@ -11,7 +11,7 @@ const Merchandise = () =>{
     return(
         <div className='Merchandise'>
             
-            <NavLink to="#">
+            <NavLink to="/SoftDrinksPage/h15858">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine1} alt="酒" /> </div>
                     <div className='countryname'>CHANG</div>
@@ -24,7 +24,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/SoftDrinksPage/h29191">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine2} alt="酒" /> </div>
                     <div className='countryname'>Fever Tree</div>
@@ -37,7 +37,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/SoftDrinksPage/h30800">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine3} alt="酒" /> </div>
                     <div className='countryname'>Fever Tree</div>
@@ -50,7 +50,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/SoftDrinksPage/h45200">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine4} alt="酒" /> </div>
                     <div className='countryname'>San Pellegrino</div>
@@ -63,7 +63,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/SoftDrinksPage/h58520">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine5} alt="酒" /> </div>
                     <div className='countryname'>Perrier</div>
@@ -71,12 +71,12 @@ const Merchandise = () =>{
                     <div className='winename'>沛綠雅 氣泡礦泉水/12瓶</div>
                     <div className='pricetag'>
                         <div className='memberprice'>會員價</div>
-                        <div className='price'>$ 880</div>
+                        <div className='price'>$ 840</div>
                     </div>
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/SoftDrinksPage/h62024">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine6} alt="酒" /> </div>
                     <div className='countryname'>Fiji</div>

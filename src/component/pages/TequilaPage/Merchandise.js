@@ -11,7 +11,7 @@ const Merchandise = () =>{
     return(
         <div className='Merchandise'>
             
-            <NavLink to="#">
+            <NavLink to="/TequilaPage/f10332">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine1} alt="酒" /> </div>
                     <div className='countryname'>Sierra</div>
@@ -24,7 +24,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/TequilaPage/f20777">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine2} alt="酒" /> </div>
                     <div className='countryname'>Jose Cuervo</div>
@@ -37,7 +37,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/TequilaPage/f34055">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine3} alt="酒" /> </div>
                     <div className='countryname'>El Jimador</div>
@@ -50,7 +50,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/TequilaPage/f40905">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine4} alt="酒" /> </div>
                     <div className='countryname'>Orendain</div>
@@ -63,7 +63,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/TequilaPage/f57233">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine5} alt="酒" /> </div>
                     <div className='countryname'>Sombra</div>
@@ -76,7 +76,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/TequilaPage/f61108">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine6} alt="酒" /> </div>
                     <div className='countryname'>Patrón Tequila</div>

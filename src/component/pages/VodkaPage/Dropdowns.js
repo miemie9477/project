@@ -16,7 +16,7 @@ const Dropdowns = () => {
             <Container>
                 <Row>
                     <Col>
-                        <Dropdown as={NavItem}>
+                        {/* <Dropdown as={NavItem}>
                             <Dropdown.Toggle as={NavLink}>品牌</Dropdown.Toggle>
                             <Dropdown.Menu role="menuitemcheckbox">
                                 <Container fluid>
@@ -43,12 +43,12 @@ const Dropdowns = () => {
                                     </Row>
                                 </Container>
                             </Dropdown.Menu>
-                        </Dropdown>
+                        </Dropdown> */}
 
                     </Col>
                     <Col>
                     
-                        <Dropdown as={NavItem}>
+                        {/* <Dropdown as={NavItem}>
                             <Dropdown.Toggle as={NavLink}>國家</Dropdown.Toggle>
                             <Dropdown.Menu role="menuitemcheckbox">
                                 <Container fluid>
@@ -75,11 +75,11 @@ const Dropdowns = () => {
                                     </Row>
                                 </Container>
                             </Dropdown.Menu>
-                        </Dropdown>
+                        </Dropdown> */}
 
                     </Col>
                     <Col md={6} className='DropdownsCol3'>
-                            價格排序<input type="button" name="pricelistButton" value={"↕"} className='pricelistButton'/>
+                            {/* 價格排序<input type="button" name="pricelistButton" value={"↕"} className='pricelistButton'/> */}
                     </Col>
                 </Row>
             </Container>
@@ -87,9 +87,9 @@ const Dropdowns = () => {
             </div>
             <div className='FRbackground'>
                 <div className='FilterResult'>
-                    <div className='FRfirst'>篩選</div>
+                    {/* <div className='FRfirst'>篩選</div>
                     <div className='FRn'> England 英國 <input type="button" value={"×"} className='clearButton'/></div>
-                    <div className='FRend'><input type="button" value={"重設全部"} className='resetButton'/></div>
+                    <div className='FRend'><input type="button" value={"重設全部"} className='resetButton'/></div> */}
                 </div>
             </div>
         </div>

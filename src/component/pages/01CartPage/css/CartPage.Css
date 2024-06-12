@@ -1,7 +1,7 @@
 .CartBodyCss{
     position: relative;
     background-color: rgb(217, 215, 215);
-    height: 1000px;
+    height: 2000px;
     width: 100%;
     z-index: 0;
 }
@@ -23,6 +23,7 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    
 }
 
 .CartItem img{
@@ -47,8 +48,10 @@
 }
 
 .CartAmountControl{
-    
     align-content: end;
+    height: 43%;
+    display: flex;
+    margin-top: auto;
 }
 
 .plus, .minus{
@@ -60,6 +63,13 @@
 .plus:hover, .minus:hover{
     background-color: rgb(159, 158, 158);
     border-color: rgb(159, 158, 158);
+}
+
+.CartAmountControl_subtotal{
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: bold;
+    margin-left: 8px;
 }
 
 .TotalGoodText{

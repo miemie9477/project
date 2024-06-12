@@ -33,7 +33,7 @@ const AdminforMember = () =>{
 
 
     return(
-    <div className="AdminBodyCssBG">
+    <div style={{height:"800px"}} className="AdminBodyCssBG">
         <br />
         <div className="AdminBodyCss" >
             

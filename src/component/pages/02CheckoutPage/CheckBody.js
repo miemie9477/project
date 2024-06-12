@@ -5,9 +5,12 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { OrdertotalContext } from "../../../ContextAPI";
 
 
 const CheckBody = () =>{
+    const {userOrdertotal, setUserOrdertotal} = useContext(OrdertotalContext);
 
     const navigate = useNavigate();
 
@@ -119,7 +122,7 @@ const CheckBody = () =>{
                         </Row>
                     </Col>
                     <Col sm={4}>
-                        <Check_OrderSummary/>
+                        <Check_OrderSummary userOrdertotal = {userOrdertotal}/>
                     </Col>
                 </Row>
                 </form>
@@ -130,13 +133,13 @@ const CheckBody = () =>{
     );
 }
 
-const Check_OrderSummary = () =>{
+const Check_OrderSummary = ({userOrdertotal}) =>{
     return(
         <div className="Check_OrderSummary">
             <div style={{fontSize:"24px",fontWeight:"bold"}}>結帳明細<hr/></div>
             <div style={{display:"flex", justifyContent: "space-between"}}>
                 <div style={{fontSize:"20px"}}>結帳金額</div>
-                <div style={{fontSize:"20px"}}>NT. $680</div>
+                <div style={{fontSize:"20px"}}>NT. ${userOrdertotal}</div>
             </div>
             <Button variant="danger"  name="checkBtn" type="submit">確認付款</Button>
         </div>

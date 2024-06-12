@@ -20,7 +20,7 @@ const Merchandise = () =>{
     return(
         <div className='Merchandise'>
             
-            <NavLink to="#">
+            <NavLink to="/WhiskeyPage/e10001">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine1} alt="酒" /> </div>
                     <div className='countryname'>Jim Beam</div>
@@ -33,7 +33,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/WhiskeyPage/e27777">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine2} alt="酒" /> </div>
                     <div className='countryname'>Johnnie Walker</div>
@@ -46,7 +46,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            {/* <NavLink to="#">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine3} alt="酒" /> </div>
                     <div className='countryname'>Johnnie Walker</div>
@@ -57,9 +57,9 @@ const Merchandise = () =>{
                         <div className='price'>$ 3,800</div>
                     </div>
                 </div>
-            </NavLink>
+            </NavLink> */}
 
-            <NavLink to="#">
+            <NavLink to="/WhiskeyPage/e36010">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine4} alt="酒" /> </div>
                     <div className='countryname'>Jameson</div>
@@ -72,7 +72,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/WhiskeyPage/e46010">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine5} alt="酒" /> </div>
                     <div className='countryname'>Maker's Mark</div>
@@ -85,7 +85,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/WhiskeyPage/e52220">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine6} alt="酒" /> </div>
                     <div className='countryname'>Hakushu</div>
@@ -98,7 +98,7 @@ const Merchandise = () =>{
                 </div>
             </NavLink>
 
-            <NavLink to="#">
+            <NavLink to="/WhiskeyPage/e68888">
                 <div className="winebox">
                     <div className='wine'> <img src={Wine7} alt="酒" /> </div>
                     <div className='countryname'>Kavalan</div>

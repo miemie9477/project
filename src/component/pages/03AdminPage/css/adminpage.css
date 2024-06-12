@@ -1,6 +1,6 @@
 .AdminBodyCssBG{
     background-color: rgb(240, 240, 240);
-    height: 800px;
+    
 }
 
 .AdminBodyCss{
@@ -131,5 +131,125 @@ td.Admin_Mem_Modify {
 }
 
 .Admin_Mem_Delete button{
+    color: white;
+}
+
+
+
+
+.Admin_Mer_TitleText{
+    text-align: left;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.Admin_Mer_line{
+    margin: 8px 0px 15px 0px;
+    width: 100%;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    
+} 
+
+.Admin_Mer_MerTable{
+    /* border: 1px rgb(188, 188, 188) solid; */
+    margin: 0 auto;
+}
+
+.Admin_Mer_MerTable th:not(th.Admin_Mer_Modify):not(th.Admin_Mer_Delete){
+    border: 1px rgb(188, 188, 188) solid;
+    padding: 4px 0px 4px 5px ;
+}
+
+.Admin_Mer_MerTable td:not(.Admin_Mer_FormTD):not(.Admin_Mer_FormTD td):not(td.Admin_Mer_Modify){
+    padding: 0px;
+}
+
+.Admin_Mer_FormTD{
+    padding: 0px;
+}
+
+.Admin_Mer_FormTD td:not(.Admin_Mer_Modify):not(.Admin_Mer_Delete){
+    border-bottom: 1px rgb(188, 188, 188) solid;
+    border-left: 1px rgb(188, 188, 188) solid;
+    border-right: 1px rgb(188, 188, 188) solid;
+    padding-left: 5px;
+}
+
+td.Admin_Mer_Modify {
+    padding-left: 5px;
+}
+
+
+.Admin_Mer_MerTable textarea {
+    box-sizing: border-box; /* 确保 textarea 元素的宽度包括内边距和边框 */
+    resize: none; /* 禁用 textarea 的调整大小功能 */
+    background-color: rgb(240, 240, 240);
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0;
+    margin-top: 5px;
+    display: block;
+    line-height: 1; /* 设置行高为一行的高度 */
+    
+
+}
+
+
+.Admin_Mer_MerTable textarea:focus{
+    outline: none;
+    border: none;
+}
+
+
+.Admin_Mer_MerNum{
+    width: 5%;
+    pointer-events: none;
+}
+
+.Admin_Mer_MerName{
+    width: 12%;
+}
+
+.Admin_Mer_MerBrand{
+    width: 12%;
+}
+
+.Admin_Mer_MerCategory{
+    width: 6%;
+}
+
+.Admin_Mer_MerSpecification{
+    width: 5%;
+}
+
+.Admin_Mer_MerUnitprice{
+    width: 4%;
+}
+
+.Admin_Mer_MerIntro{
+    width: 20%;
+}
+
+.Admin_Mer_MerAccount{
+    width: 4%;
+}
+
+.Admin_Mer_Modify{
+    width: 4%;  
+}
+
+.Admin_Mer_Modify button{
+    color: white;
+}
+
+.Admin_Mer_Delete{
+    width: 4%;  
+}
+
+.Admin_Mer_Delete button{
     color: white;
 }
