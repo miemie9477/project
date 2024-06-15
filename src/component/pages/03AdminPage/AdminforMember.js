@@ -30,7 +30,7 @@ const AdminforMember = () =>{
             }
         )
     }, [])
-
+    
 
     return(
     <div style={{height:"800px"}} className="AdminBodyCssBG">

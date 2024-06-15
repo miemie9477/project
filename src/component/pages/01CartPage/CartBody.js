@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { HiPlus } from "react-icons/hi2";
 import { HiMinus } from "react-icons/hi2";
 import { CiTrash } from "react-icons/ci";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useContext } from 'react';
 import { AccountContext} from "../../../ContextAPI";
@@ -43,6 +43,7 @@ const CartBody = () =>{
                     console.log(response.data.data)
                     setCartdatas(response.data.data)
                     setDataLength(response.data.data.length);
+                    processCartData(response.data.data);
                 }
             }
         )
@@ -72,29 +73,49 @@ const CartBody = () =>{
     const {userOrdertotal, setUserOrdertotal} = useContext(OrdertotalContext);
 
 
-    const [cartNoandNum, setCartNoandNum] = useState({});
-    const updateCartNoandNum = (pNo,Num) => {
-        setCartNoandNum(prevCartNoandNum => {
+    const [processedData, setProcessedData] = useState([]);
 
-            if (pNo in prevCartNoandNum) {
+    const processCartData = (data) => {
+        const newProcessedData = [];
+        const pNoMap = {};  // 用来记录每个 pNo 的累计数据
 
-                return { ...prevCartNoandNum, [pNo]: prevCartNoandNum[pNo] + Num };
+        data.forEach(cartdata => {
+            const { pNo, amount, unitPrice } = cartdata;
+
+            if (pNoMap[pNo]) {
+                // 如果当前 pNo 已经出现过，累加 amount 和 unitPrice
+                pNoMap[pNo].amount += amount;
+                pNoMap[pNo].unitPrice += unitPrice;
             } else {
-
-                return { ...prevCartNoandNum, [pNo]: Num };
+                // 如果当前 pNo 没有出现过，初始化并添加到 newProcessedData 数组
+                pNoMap[pNo] = { pNo, amount, unitPrice };
+                newProcessedData.push(pNoMap[pNo]);
             }
         });
+
+        setProcessedData(newProcessedData);  // 更新状态
     };
-    const minusCartNoandNum = (pNo,Num) => {
-        setCartNoandNum(prevCartNoandNum => ({...prevCartNoandNum,
-            [pNo]: prevCartNoandNum[pNo] - Num
-        }));
+
+    const minusAmount = (pNo) => {
+        setProcessedData(prevData =>
+            prevData.map(item => 
+                item.pNo === pNo && item.amount > 0
+                    ? { ...item, amount: item.amount - 1 }
+                    : item
+            )
+        );
     };
-    const addCartNoandNum = (pNo,Num) => {
-        setCartNoandNum(prevCartNoandNum => ({...prevCartNoandNum,
-            [pNo]: prevCartNoandNum[pNo] + Num
-        }));
+
+    const plusAmount = (pNo) => {
+        setProcessedData(prevData =>
+            prevData.map(item => 
+                item.pNo === pNo
+                    ? { ...item, amount: item.amount + 1 }
+                    : item
+            )
+        );
     };
+    
 
     const {Cart_Mer, setCart_Mer} = useContext(Cart_MerContext);
 
@@ -115,7 +136,7 @@ const CartBody = () =>{
                         {/* {cartdatas.map} */}
                         {cartdatas.map(cartdata => (
                             <Row key={cartdata.UUID} >
-                                <Item cartdata={cartdata} updateTotalPrice={updateTotalPrice} updateCartNoandNum={updateCartNoandNum} minusCartNoandNum={minusCartNoandNum} addCartNoandNum={addCartNoandNum}/>
+                                <Item cartdata={cartdata} updateTotalPrice={updateTotalPrice} minusAmount={minusAmount} plusAmount={plusAmount}/>
                                 
                             </Row>
                         ))}
@@ -123,7 +144,7 @@ const CartBody = () =>{
                         {/* <Item/> */}
                     </Col>
                     <Col sm={4}>
-                        <OrderSummary dataLength = {dataLength} totalprice={totalprice} setUserOrdertotal={setUserOrdertotal} cartNoandNum={cartNoandNum} setCart_Mer={setCart_Mer}/>
+                        <OrderSummary dataLength = {dataLength} totalprice={totalprice} setUserOrdertotal={setUserOrdertotal} processedData = {processedData} setCart_Mer={setCart_Mer}/>
                     </Col>
                 </Row>
 
@@ -136,7 +157,7 @@ const CartBody = () =>{
 }
 
 
-const Item = ({cartdata, updateTotalPrice, updateCartNoandNum, minusCartNoandNum, addCartNoandNum}) =>{
+const Item = ({cartdata, updateTotalPrice, minusAmount, plusAmount}) =>{
     var productID = cartdata.pNo
     var productPath = require(`./pic/${productID}.png`);
 
@@ -146,7 +167,7 @@ const Item = ({cartdata, updateTotalPrice, updateCartNoandNum, minusCartNoandNum
         {
             setCart_num(Cart_num - 1)
             updateTotalPrice(-cartdata.unitPrice)
-            minusCartNoandNum(cartdata.pNo, 1)
+            minusAmount(cartdata.pNo)
         }
         else setCart_num(1)
     }
@@ -154,7 +175,7 @@ const Item = ({cartdata, updateTotalPrice, updateCartNoandNum, minusCartNoandNum
     const Cart_Add = async () =>{
         setCart_num(Cart_num + 1)
         updateTotalPrice(cartdata.unitPrice)
-        addCartNoandNum(cartdata.pNo, 1)
+        plusAmount(cartdata.pNo)
     }
 
     useEffect(() =>{
@@ -198,7 +219,6 @@ const Item = ({cartdata, updateTotalPrice, updateCartNoandNum, minusCartNoandNum
     useEffect(() => {
         setCart_num(cartdata.amount)
         updateTotalPrice(cartdata.salePrice/2);
-        updateCartNoandNum(cartdata.pNo, cartdata.amount/2)
     }, []);
 
     const [Cart_winetype, setCart_winetype] = useState('#');
@@ -240,18 +260,25 @@ const Item = ({cartdata, updateTotalPrice, updateCartNoandNum, minusCartNoandNum
     );
 }
 
-const OrderSummary = ({dataLength, totalprice, setUserOrdertotal, cartNoandNum, setCart_Mer}) =>{
+const OrderSummary = ({dataLength, totalprice, setUserOrdertotal, processedData, setCart_Mer}) =>{
+    const navigate = useNavigate();
     const Cart_ToCheck = () =>{
-        setUserOrdertotal(totalprice)
-        console.log(cartNoandNum)
-        setCart_Mer(cartNoandNum)
+        if(dataLength === 0){
+            alert("購物車為空!");
+            navigate('/CartPage');
+        }
+        else{
+            navigate("/CartPage/CheckPage/")
+            setUserOrdertotal(totalprice)
+            setCart_Mer(processedData);
+        }
     }
     return(
         <div className="OrderSummary">
             <div style={{fontSize:"20px",fontWeight:"bold"}}>訂單總結<hr/></div>
             <div style={{position:"relative", fontSize:"20px", display:"flex", justifyContent:"right"}}>NT. {totalprice}</div>
-            <NavLink to="/CartPage/CheckPage/"><Button variant="danger" onClick={Cart_ToCheck}>點我結帳({dataLength})</Button></NavLink>
-            </div>
+            <Button variant="danger" onClick={Cart_ToCheck}>點我結帳({dataLength})</Button>
+        </div>
     );
 }
 

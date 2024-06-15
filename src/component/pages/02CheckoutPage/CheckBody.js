@@ -15,7 +15,7 @@ import axios from "axios";
 const CheckBody = () =>{
 
     const {userOrdertotal, setUserOrdertotal} = useContext(OrdertotalContext); //購物車總額 (int)
-    const {Cart_Mer, setCart_Mer} = useContext(Cart_MerContext); //購物車商品編號與數量 {pNo: Num} (JSON)
+    const {Cart_Mer, setCart_Mer} = useContext(Cart_MerContext); //購物車商品編號與數量 ex: [{pNo: 'b10111', amount: 1, unitPrice: 500},{pNo: 'a10010', amount: 21, unitPrice: 1680}...]
     const { userAccount, setUserAccount} = useContext(AccountContext);
     var tId;
     
@@ -27,13 +27,6 @@ const CheckBody = () =>{
         reValidateMode:"onBlur",
 
     });
-
-    const keys = Object.keys(Cart_Mer);
-    if (keys.length > 0) {
-        const firstKey = keys[0];
-        const firstValue = Cart_Mer[firstKey];
-        console.log(`Key: ${firstKey}, Value: ${firstValue}`);
-    }
 
     useEffect(() =>{
         axios.post("http://localhost:3001/cart/checkExist", {userAccount})
@@ -61,12 +54,11 @@ const CheckBody = () =>{
         return formatter.format(now);
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         var rId;
         var time = getTaiwanTime();
         console.log("time:", time);
         const info ={
-            tId: tId,
             tMethod: "cart",
             tTime: time,
             mId: userAccount,
@@ -84,22 +76,47 @@ const CheckBody = () =>{
         }
         console.log(info);
         var url = "http://localhost:3001/check/inputTrans"
-        axios.post(url, info)
+        await axios.post(url, info)
         .then(
             response =>{
                 console.log(response.data);
                 rId = response.data.rId;
                 console.log("get rId:", rId);
-                
-                // console.log("驗證成功",data);
-                // navigate('/CartPage/CheckPage/CheckSucceedPage');
+                inputRecord(rId);
+                console.log("驗證成功",data);
+                navigate('/CartPage/CheckPage/CheckSucceedPage');
             }
         )
 
-        var url = "http://localhost:3001/check/inputRecord";
         
     }
-    console.log(errors);
+    const inputRecord = async (rId) =>{
+        console.log("enter:", rId);
+        for (const item of Cart_Mer) {
+            var url = "http://localhost:3001/check/inputRecord";
+            const pNo = item.pNo;
+            const amount = item.amount;
+            const unitPrice = item.unitPrice;
+            await axios.post(url, {rId, pNo, amount, unitPrice})
+            .then(
+                response =>{
+                    if(response.data.result === "success"){
+                        console.log(response.data);
+                    }
+                }
+            )
+            const discardUrl = "http://localhost:3001/cart/cartDiscard";
+            await axios.post(discardUrl, {tId, pNo})
+            .then(
+                response =>{
+                    if(response.data.result === "success"){
+                        console.log(response.data);
+                    }
+                }
+            )
+
+        }
+    }
 
     return(
         <div className="CheckBodyCss">

@@ -9,31 +9,33 @@ import AdminforMemberForms from "./AdminforMemberForms";
 
 const AdminforOrder = () =>{
     const [members, setMembers] = useState([]);
+    const [transInfo, setTransInfo] = useState({});
 
-    useEffect(() =>{
-        const url = "http://localhost:3001/modifyAdminSide/viewMember"
-        axios.get(url)
-        .then(
-            response =>{
-                if(response.data.result === "Found no data"){
-                    console.log("no data")
-                }
-                else{
-                    console.log(response.data);
-                    setMembers(response.data);
-                }
-            }
-        )
-        .catch(
-            error =>{
-                console.log(error)
-            }
-        )
-    }, [])
+    useEffect(() => {
+        const fetchTransInfo = async () => {
+            
+            const url = "http://localhost:3001/modifyAdminSide/viewTrans";
+            const response = await axios.post(url);
+            console.log(response.data);
+            
 
-    useEffect(() =>{
+            const updatedTransInfo = await Promise.all(response.data.map(async item => {
+                const recordUrl = "http://localhost:3001/modifyMemberSide/viewRecord";
+                const rId = item.rId;
+                const recordResponse = await axios.post(recordUrl, { rId });
+                return { ...item, ...recordResponse.data};
+            }));
 
-    })
+            setTransInfo(updatedTransInfo);
+            console.log("new:", updatedTransInfo);
+            //點開terminal，商品在data裡
+        };
+
+        fetchTransInfo();
+        console.log("trans:", transInfo);
+    }, []);
+
+    
 
 
     return(

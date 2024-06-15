@@ -15,7 +15,6 @@ const AdminforMerchandiseForms = ({member}) =>{
         // 这里可以添加你希望在表单验证成功后执行的代码
         
     }
-    console.log(errors);
 
     return(
         <td colSpan={11} className="Admin_Mer_FormTD">

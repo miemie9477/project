@@ -47,7 +47,7 @@ const Mem_DataReset = ({defaultInfo, setDefaultInfo}) =>{
             address: data.Member_Address,
             phone: data.Member_Phone,
         }
-        const url = "http://localhost:3001/modifyMemberSide/modifySubmit"
+        const url = "http://localhost:3001/modifyMemberSide/modifyData"
         axios.post(url, modifyInfo)
         .then(
             response =>{

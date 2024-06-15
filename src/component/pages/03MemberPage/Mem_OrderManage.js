@@ -46,10 +46,37 @@ const Mem_OrderManage = () =>{
         fetchTransInfo();
     }, [userAccount]);
 
+    const getTaiwanTime = () => {
+        const now = new Date();
+        const options = {
+            timeZone: 'Asia/Taipei',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour12: false,
+        };
+        const formatter = new Intl.DateTimeFormat('zh-TW', options);
+        return formatter.format(now);
+    };
+
     const onSubmit = (data) => {
         console.log("驗證成功",data);
-        
+
+        const date = getTaiwanTime();
+        const info = data.Mem_Trans_Ratings;
+        const pNo = data.pNo;
+        const url = "http://localhost:3001/modifyMemberSide/rating";
+        axios.post(url, {userAccount, pNo, date, info})
+        .then(
+            response =>{
+                if(response.data.result === "success"){
+                    alert("已送出評價!");
+                    console.log(response.data);
+                }
+            }
+        )
     }
+
 
     return(
         <div className="Mem_OrderManageBG">

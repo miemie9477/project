@@ -1,7 +1,7 @@
 import "./css/adminpage.css";
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
-
+import axios from "axios";
 
 const AdminforMemberForms = ({member}) =>{
     const { register, handleSubmit, watch, setError, formState: { errors } } = useForm({
@@ -9,13 +9,26 @@ const AdminforMemberForms = ({member}) =>{
         reValidateMode:"onBlur",
 
     });
+    
 
     const onSubmit = (data) => {
         console.log("驗證成功",data);
-        // 这里可以添加你希望在表单验证成功后执行的代码
+        
         
     }
-    console.log(errors);
+    const deleteMember = (data) =>{
+        const mId = data.mId;
+        const url = "http://localhost:3001/modifyAdminSide/deleteMember";
+        axios.post(url, {mId})
+        .then(
+            response =>{
+                if(response.data.result === "success"){
+                    console.log(response.data);
+                    alert("系統訊息:已刪除會員", mId);
+                }
+            }
+        )
+    }
 
     return(
         <td colSpan={11} className="Admin_Mem_FormTD">
@@ -48,7 +61,7 @@ const AdminforMemberForms = ({member}) =>{
                 <textarea name="Admin_Mem_MemPwd" id="Admin_Mem_MemPwd" {...register("Admin_Mem_MemPwd", {required: true})}>{member.mPwd}</textarea>
             </td>
             <td className="Admin_Mem_Modify"><Button variant="info" type="submit">修改</Button></td>
-            <td className="Admin_Mem_Delete"><Button variant="danger">刪除</Button></td>
+            <td className="Admin_Mem_Delete"><Button variant="danger" onClick={deleteMember}>刪除</Button></td>
         </form>                    
         </td>
     );
