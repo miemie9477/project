@@ -11,10 +11,12 @@ import { useEffect, useState } from "react";
 import { useContext } from 'react';
 import { AccountContext} from "../../../ContextAPI";
 import { OrdertotalContext } from "../../../ContextAPI";
+import { Cart_MerContext } from "../../../ContextAPI";
 import axios from "axios";
 
 
 var tId;
+var fetchCartData;
 
 const CartBody = () =>{
     var [productID, setProductID] = useState("a10010");
@@ -23,20 +25,13 @@ const CartBody = () =>{
     const { userAccount, setUserAccount} = useContext(AccountContext);
     const [cartdatas, setCartdatas] = useState([]);
     var [dataLength, setDataLength] = useState(1);
+
     
     function handleClick(){
 
     }
 
-    useEffect(() =>{
-        axios.post("http://localhost:3001/cart/checkExist", {userAccount})
-        .then(
-            response =>{
-                tId = response.data.tId;
-                console.log("tId", tId);
-            }
-        )
-        
+    fetchCartData = () => {
         const url = `http://localhost:3001/cart/getItem/${userAccount}`
         axios.get(url)
         .then(
@@ -56,7 +51,18 @@ const CartBody = () =>{
                 console.log(error);
             }
         )
-    }, [])
+    };
+
+    useEffect(() => {
+        axios.post("http://localhost:3001/cart/checkExist", {userAccount})
+        .then(
+            response =>{
+                tId = response.data.tId;
+                console.log("tId", tId);
+            }
+        )
+        fetchCartData();
+    }, [userAccount]);
     
     var [totalprice, setTotalprice] = useState(0);
     const updateTotalPrice = (delta) => {
@@ -64,6 +70,34 @@ const CartBody = () =>{
     };
 
     const {userOrdertotal, setUserOrdertotal} = useContext(OrdertotalContext);
+
+
+    const [cartNoandNum, setCartNoandNum] = useState({});
+    const updateCartNoandNum = (pNo,Num) => {
+        setCartNoandNum(prevCartNoandNum => {
+
+            if (pNo in prevCartNoandNum) {
+
+                return { ...prevCartNoandNum, [pNo]: prevCartNoandNum[pNo] + Num };
+            } else {
+
+                return { ...prevCartNoandNum, [pNo]: Num };
+            }
+        });
+    };
+    const minusCartNoandNum = (pNo,Num) => {
+        setCartNoandNum(prevCartNoandNum => ({...prevCartNoandNum,
+            [pNo]: prevCartNoandNum[pNo] - Num
+        }));
+    };
+    const addCartNoandNum = (pNo,Num) => {
+        setCartNoandNum(prevCartNoandNum => ({...prevCartNoandNum,
+            [pNo]: prevCartNoandNum[pNo] + Num
+        }));
+    };
+
+    const {Cart_Mer, setCart_Mer} = useContext(Cart_MerContext);
+
     
     return(
         <div className="CartBodyCss">
@@ -81,7 +115,7 @@ const CartBody = () =>{
                         {/* {cartdatas.map} */}
                         {cartdatas.map(cartdata => (
                             <Row key={cartdata.UUID} >
-                                <Item cartdata={cartdata} updateTotalPrice={updateTotalPrice}/>
+                                <Item cartdata={cartdata} updateTotalPrice={updateTotalPrice} updateCartNoandNum={updateCartNoandNum} minusCartNoandNum={minusCartNoandNum} addCartNoandNum={addCartNoandNum}/>
                                 
                             </Row>
                         ))}
@@ -89,7 +123,7 @@ const CartBody = () =>{
                         {/* <Item/> */}
                     </Col>
                     <Col sm={4}>
-                        <OrderSummary dataLength = {dataLength} totalprice={totalprice} setUserOrdertotal={setUserOrdertotal}/>
+                        <OrderSummary dataLength = {dataLength} totalprice={totalprice} setUserOrdertotal={setUserOrdertotal} cartNoandNum={cartNoandNum} setCart_Mer={setCart_Mer}/>
                     </Col>
                 </Row>
 
@@ -101,36 +135,70 @@ const CartBody = () =>{
     );
 }
 
-const Item = ({cartdata, updateTotalPrice}) =>{
+
+const Item = ({cartdata, updateTotalPrice, updateCartNoandNum, minusCartNoandNum, addCartNoandNum}) =>{
     var productID = cartdata.pNo
     var productPath = require(`./pic/${productID}.png`);
 
     const [Cart_num, setCart_num] = useState(1);
     const Cart_Minus = () =>{
-        if(Cart_num>1) 
+        if(Cart_num > 1) 
         {
             setCart_num(Cart_num - 1)
             updateTotalPrice(-cartdata.unitPrice)
-            const pName = cartdata.pName;
-            const amount = Cart_num
-            console.log("pName:", pName)
-            console.log("amount:", amount)
-            console.log("tId:", tId);
-
+            minusCartNoandNum(cartdata.pNo, 1)
         }
         else setCart_num(1)
     }
 
-    const Cart_Add = () =>{
+    const Cart_Add = async () =>{
         setCart_num(Cart_num + 1)
         updateTotalPrice(cartdata.unitPrice)
+        addCartNoandNum(cartdata.pNo, 1)
+    }
 
+    useEffect(() =>{
+        const pNo = cartdata.pNo;
+        const amount = Cart_num;
+        console.log("pNo:", pNo)
+        console.log("amount:", amount)
+        console.log("tId:", tId);
+
+        const url = "http://localhost:3001/cart/modifyAmount"
+        axios.post(url, {tId, pNo, amount})
+        .then(
+            response =>{
+                if(response.data.result === "success"){
+                    console.log(response.data);
+                }
+            }
+        ).catch(
+            error=>{
+                console.log(error);
+            }
+        )
+    }, [Cart_num])
+
+    const Discard = () =>{
+        const url = "http://localhost:3001/cart/cartDiscard";
+        const pNo = cartdata.pNo;
+        console.log("tId:", tId);
+        console.log("pNo:", pNo);
+        axios.post(url, {tId, pNo})
+        .then(
+            response =>{
+                if(response.data.result === "success"){
+                    fetchCartData();
+                }
+            }
+        )
+        
     }
 
     useEffect(() => {
         setCart_num(cartdata.amount)
         updateTotalPrice(cartdata.salePrice/2);
-        
+        updateCartNoandNum(cartdata.pNo, cartdata.amount/2)
     }, []);
 
     const [Cart_winetype, setCart_winetype] = useState('#');
@@ -161,7 +229,7 @@ const Item = ({cartdata, updateTotalPrice}) =>{
                 </div>
             </div>
             <div className="CartAmountControl">
-                <Button variant="link" style={{color:"black"}} className="trash" ><CiTrash size={20}/></Button>
+                <Button variant="link" onClick={Discard} style={{color:"black"}} className="trash" ><CiTrash size={20}/></Button>
                 <Button variant="secondary" name="minusBtn" className="minus" onClick={Cart_Minus}><HiMinus size={14} color="black"/></Button>
                 <Button variant="outline-secondary" name="amount" disabled style={{color:"black", paddingLeft:"16px",paddingRight:"16px"}}>{Cart_num}</Button>
                 <Button variant="secondary" name="plusBtn" className="plus" onClick={Cart_Add}><HiPlus size={14} color="black"/></Button>
@@ -172,17 +240,18 @@ const Item = ({cartdata, updateTotalPrice}) =>{
     );
 }
 
-const OrderSummary = ({dataLength, totalprice, setUserOrdertotal}) =>{
+const OrderSummary = ({dataLength, totalprice, setUserOrdertotal, cartNoandNum, setCart_Mer}) =>{
     const Cart_ToCheck = () =>{
         setUserOrdertotal(totalprice)
+        console.log(cartNoandNum)
+        setCart_Mer(cartNoandNum)
     }
-
     return(
         <div className="OrderSummary">
             <div style={{fontSize:"20px",fontWeight:"bold"}}>訂單總結<hr/></div>
             <div style={{position:"relative", fontSize:"20px", display:"flex", justifyContent:"right"}}>NT. {totalprice}</div>
-            <NavLink to="/CartPage/CheckPage"><Button variant="danger" onClick={Cart_ToCheck}>點我結帳({dataLength})</Button></NavLink>
-        </div>
+            <NavLink to="/CartPage/CheckPage/"><Button variant="danger" onClick={Cart_ToCheck}>點我結帳({dataLength})</Button></NavLink>
+            </div>
     );
 }
 

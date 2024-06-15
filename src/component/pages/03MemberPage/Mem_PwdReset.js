@@ -5,12 +5,14 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { AccountContext } from "../../../ContextAPI";
+import axios from "axios";
 
-const Mem_PWreset = () =>{
+const Mem_PWreset = ({defaultInfo}) =>{
 
     const navigate = useNavigate();
-
+    const { userAccount, setUserAccount} = useContext(AccountContext);
     const { register, handleSubmit, watch, setError, clearErrors, formState: { errors } } = useForm({
         mode:"onSubmit",
         reValidateMode:"onBlur",
@@ -36,7 +38,16 @@ const Mem_PWreset = () =>{
     const onSubmit = (data) => {
         if(validatePasswords())
         {
-            // 这里可以添加你希望在表单验证成功后执行的代码
+            const url = "http://localhost:3001/modifyMemberSide/modifyPwd"
+            const mPwd = data.Member_NewPassword;
+            axios.post(url, {userAccount, mPwd})
+            .then(
+                response =>{
+                    console.log(response.data);
+                    alert("修改資料成功");
+                    navigate('/MemberPage');
+                }
+            )
             console.log("驗證成功",data);
         }
         else console.log("驗證失敗");
@@ -56,7 +67,7 @@ const Mem_PWreset = () =>{
                                     <div className="Member_TitleText">會員密碼修改</div>
                                     <div className='Member_line'></div>
                                     <b>新密碼</b>
-                                    <input type="password" id="Member_NewPassword"
+                                    <input type="password" id="Member_NewPassword" 
                                     {...register("Member_NewPassword", {required: true, })} />
                                     {!!errors.Member_NewPassword && <p>{errors.Member_NewPassword.message.toString() || "請輸入密碼"}</p> }
 

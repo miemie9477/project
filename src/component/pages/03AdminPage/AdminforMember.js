@@ -19,7 +19,7 @@ const AdminforMember = () =>{
                     console.log("no data")
                 }
                 else{
-                    console.log(response.data);
+                    console.log("result:",response.data);
                     setMembers(response.data);
                 }
             }

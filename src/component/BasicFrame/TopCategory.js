@@ -5,9 +5,14 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { CiSearch } from "react-icons/ci";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import { SearchdataContext } from "../../ContextAPI";
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./css/frame.css"
 
 const Category = () => {
+    const navigate = useNavigate();
+
     const { register, handleSubmit, watch, clearErrors, setError, formState: { errors } } = useForm({
         mode:"onSubmit",
         reValidateMode:"onBlur",
@@ -26,15 +31,24 @@ const Category = () => {
                     console.log(response.data);
                     console.log("get data:" , response.data)
                     console.log("get brand Eng part: ", extractEnglish(response.data[0].brand))
+
+                    setSearchdata(response.data)
                 }
             }
-        )                                                       
+        )
+        .finally(() => {
+            navigate('/SearchPage')
+        })                                                   
     }
 
     const extractEnglish = (str) => {
         const match = str.match(/[a-zA-Z,']+/g);
         return match ? match.join(' ') : '';
     };
+
+    const {Searchdata, setSearchdata} = useContext(SearchdataContext);
+    
+
 
     return(
         <div className="CategoryCss">
@@ -64,7 +78,7 @@ const Category = () => {
             <form name="SelectForm" onSubmit={handleSubmit(onSubmit)}>
                 <InputGroup className="mb-10">
                     <Form.Control
-                    {...register("Search")}
+                    {...register("Search",{required: true})}
                     type="text"
                     placeholder="Search"
                     aria-label="Search"

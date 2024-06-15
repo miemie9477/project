@@ -35,7 +35,7 @@ const RegisterForm = () =>{
     
     const validatePasswords = () => {
         if (!!passwordtext && !!repeatpasswordtext && (passwordtext !== repeatpasswordtext)) {
-            setError("registerRepeatPassword",{type:"manual", message:"兩密碼不相同"})
+            setError("registerRepeatPassword",{type:"manual", message:"兩密碼不相同"}, { shouldFocus: true })
             return false;
         }
         clearErrors('registerRepeatPassword');

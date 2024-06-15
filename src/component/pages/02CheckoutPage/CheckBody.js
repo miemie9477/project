@@ -4,26 +4,100 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { OrdertotalContext } from "../../../ContextAPI";
+import { Cart_MerContext } from "../../../ContextAPI";
+import { AccountContext} from "../../../ContextAPI";
+import axios from "axios";
 
 
 const CheckBody = () =>{
-    const {userOrdertotal, setUserOrdertotal} = useContext(OrdertotalContext);
 
+    const {userOrdertotal, setUserOrdertotal} = useContext(OrdertotalContext); //購物車總額 (int)
+    const {Cart_Mer, setCart_Mer} = useContext(Cart_MerContext); //購物車商品編號與數量 {pNo: Num} (JSON)
+    const { userAccount, setUserAccount} = useContext(AccountContext);
+    var tId;
+    
+    console.log(Cart_Mer);
     const navigate = useNavigate();
-
+    
     const { register, handleSubmit, watch, setError, formState: { errors } } = useForm({
         mode:"onSubmit",
         reValidateMode:"onBlur",
 
     });
 
+    const keys = Object.keys(Cart_Mer);
+    if (keys.length > 0) {
+        const firstKey = keys[0];
+        const firstValue = Cart_Mer[firstKey];
+        console.log(`Key: ${firstKey}, Value: ${firstValue}`);
+    }
+
+    useEffect(() =>{
+        axios.post("http://localhost:3001/cart/checkExist", {userAccount})
+        .then(
+            response =>{
+                console.log("get:", response.data.tId);
+                tId = response.data.tId;
+            }
+        )
+    })
+    
+    const getTaiwanTime = () => {
+        const now = new Date();
+        const options = {
+            timeZone: 'Asia/Taipei',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        };
+        const formatter = new Intl.DateTimeFormat('zh-TW', options);
+        return formatter.format(now);
+    };
+
     const onSubmit = (data) => {
-        console.log("驗證成功",data);
-        // 这里可以添加你希望在表单验证成功后执行的代码
-        navigate('/CartPage/CheckPage/CheckSucceedPage');
+        var rId;
+        var time = getTaiwanTime();
+        console.log("time:", time);
+        const info ={
+            tId: tId,
+            tMethod: "cart",
+            tTime: time,
+            mId: userAccount,
+            tPay: "credit card",
+            bankId: data.Check_BankCode,
+            bankName: data.Check_BankName,
+            cardId: data.Check_CreditcardNumber,
+            security: data.Check_CreditcardCVC,
+            dueDate: data.Check_ExpirationDate,
+            tDelivery: data.Check_DeliverMethod,
+            tAddress: data.Check_Address,
+            recipient: data.Check_ReceiverName,
+            reciPhone: data.Check_ReceiverPhone
+
+        }
+        console.log(info);
+        var url = "http://localhost:3001/check/inputTrans"
+        axios.post(url, info)
+        .then(
+            response =>{
+                console.log(response.data);
+                rId = response.data.rId;
+                console.log("get rId:", rId);
+                
+                // console.log("驗證成功",data);
+                // navigate('/CartPage/CheckPage/CheckSucceedPage');
+            }
+        )
+
+        var url = "http://localhost:3001/check/inputRecord";
+        
     }
     console.log(errors);
 
@@ -90,7 +164,7 @@ const CheckBody = () =>{
                                             
                                             <div>　　</div> 
                                             <input type="text" name="Check_BankCode" id="Check_BankCode"  
-                                            {...register("Check_BankCode", {required: true, maxLength: {value: 3, message: "銀行代碼過長"}, minLength: {value: 3, message: "銀行代碼過短"}})} />
+                                            {...register("Check_BankCode", {required: true, maxLength: {value: 3, message: "銀行代碼過長"}})} />
                                             
 
                                         </div>
@@ -105,7 +179,7 @@ const CheckBody = () =>{
                                     {...register("Check_CreditcardNumber", {required: true})} />
                                     {!!errors.Check_CreditcardNumber && <p>{errors.Check_CreditcardNumber.message.toString() || "請輸入信用卡號"}</p> }
 
-                                    <b>安全碼</b>ff
+                                    <b>安全碼</b>
                                     <input type="text" name="Check_CreditcardCVC" id="Check_CreditcardCVC"  
                                     {...register("Check_CreditcardCVC", {required: true, maxLength: {value: 3, message: "安全碼過長"}, minLength: {value: 3, message: "安全碼過短"}})} />
                                     {!!errors.Check_CreditcardCVC && <p>{errors.Check_CreditcardCVC.message.toString() || "請輸入安全碼"}</p> }

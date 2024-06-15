@@ -4,6 +4,8 @@ import { LoginProvider } from "./ContextAPI";
 import ProtectedRoute from './ProtectedRoute';
 import { AccountProvider } from "./ContextAPI";
 import { OrdertotalProvider } from "./ContextAPI";
+import { SearchdataProvider } from "./ContextAPI";
+import { Cart_MerProvider } from "./ContextAPI";
 
 import HomePage from "./component/pages/00HomePage/HomePage";
 import GinPage from "./component/pages/GinPage/GinPage";
@@ -71,6 +73,7 @@ import CheckSucceedPage from "./component/pages/02CheckSucceedPage/CheckSucceedP
 import RegisterSucceedPage from "./component/pages/02RegisterSucceedPage/RegisterSucceedPage";
 import MemberPage from "./component/pages/03MemberPage/MemberPage";
 import AdminPage from "./component/pages/03AdminPage/AdminPage";
+import SearchPage from "./component/pages/00SearchPage/SearchPage";
 
 
 
@@ -84,6 +87,8 @@ function App() {
       <LoginProvider>
       <AccountProvider>
       <OrdertotalProvider>
+      <SearchdataProvider>
+      <Cart_MerProvider>
         <ScrollToTop /> 
         <Routes>
           <Route index element = {<HomePage/>}/>
@@ -152,9 +157,12 @@ function App() {
           <Route path="RegisterPage/RegisterSucceedPage" element={<RegisterSucceedPage/>}/>
           <Route path="MemberPage" element={<ProtectedRoute element={<MemberPage />} allowedRoles={[1, 2]} />}/>
           <Route path="AdminPage" element={<ProtectedRoute element={<AdminPage />} allowedRoles={[2]} />}/>
+          <Route path="SearchPage" element={<SearchPage/>}/>
           
 
         </Routes>
+      </Cart_MerProvider>
+      </SearchdataProvider>
       </OrdertotalProvider>
       </AccountProvider>
       </LoginProvider>

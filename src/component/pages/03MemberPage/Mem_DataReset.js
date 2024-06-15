@@ -10,28 +10,11 @@ import { useContext } from 'react';
 import { AccountContext} from "../../../ContextAPI";
 import axios from "axios";
 
-const Mem_DataReset = () =>{
+const Mem_DataReset = ({defaultInfo, setDefaultInfo}) =>{
 
     const navigate = useNavigate();
     const { userAccount, setUserAccount} = useContext(AccountContext);
-    var [defaultInfo, setDefaultInfo] = useState({ 
-        mName: "",
-        pId: "",
-        email: "",
-        gender: "",
-        address: "",
-        phone: "",
-        birthday: "" });
-
-    var info = useRef({
-        mName: "",
-        pId: "",
-        email: "",
-        gender: "",
-        address: "",
-        phone: "",
-        birthday: "" 
-    });
+    
 
     const { register, handleSubmit, watch, setError, formState: { errors } } = useForm({
         mode:"onSubmit",
@@ -46,75 +29,17 @@ const Mem_DataReset = () =>{
         .then(
             response =>{
                 console.log(response.data[0]);
-                info.current ={
-                    mName: response.data[0].mName,
-                    pId: response.data[0].pId,
-                    email: response.data[0].email,
-                    gender: response.data[0].gender,
-                    address: response.data[0].address,
-                    phone: response.data[0].phone,
-                    birthday: response.data[0].birthday
-                };
-                // setDefaultInfo =({
-                //     mPwd:info.current.mPwd ,
-                //     mName:info.current.mName ,
-                //     pId:info.current.pId ,
-                //     email:info.current.email ,
-                //     gender:info.current.gender ,
-                //     address:info.current.address ,
-                //     phone:info.current.phone ,
-                //     birthday:info.current.birthday
-                // })
-                // setDefaultInfo = ({
-                //     mName: response.data[0].mName,
-                //     pId: response.data[0].pId,
-                //     email: response.data[0].email,
-                //     gender: response.data[0].gender,
-                //     address: response.data[0].address,
-                //     phone: response.data[0].phone,
-                //     birthday: response.data[0].birthday
-                // })
-                    console.log("mName:"+ defaultInfo.mName)
-                    // console.log(
-                        //     info.current.mName + " " +
-                        //     info.current.pId + " " +
-                        //     info.current.email + " " +
-                        //     info.current.gender + " " +
-                        //     info.current.address + " " +
-                        //     info.current.phone + " " +
-                        //     info.current.birthday + " "
-                        // )
-                    }
-                )
-    }, [])
+                setDefaultInfo(response.data[0])
+            }
+        )
 
-    useEffect(() => {
-        setDefaultInfo =({
-            mName:info.current.mName ,
-            pId:info.current.pId ,
-            email:info.current.email ,
-            gender:info.current.gender ,
-            address:info.current.address ,
-            phone:info.current.phone ,
-            birthday:info.current.birthday
-        })
         
-    }, [info]);
-    setDefaultInfo =({
-        mName:info.current.mName ,
-        pId:info.current.pId ,
-        email:info.current.email ,
-        gender:info.current.gender ,
-        address:info.current.address ,
-        phone:info.current.phone ,
-        birthday:info.current.birthday
-    })
-
+    }, [])
             
-    console.log("mName:"+ defaultInfo.mName)
             
     const onSubmit = (data) => {
         const modifyInfo ={
+            mId: userAccount,
             mName: data.Member_Name,
             pId: data.Member_ID,
             email: data.Member_Email,
@@ -122,8 +47,18 @@ const Mem_DataReset = () =>{
             address: data.Member_Address,
             phone: data.Member_Phone,
         }
-        console.log("驗證成功",data);
-        
+        const url = "http://localhost:3001/modifyMemberSide/modifySubmit"
+        axios.post(url, modifyInfo)
+        .then(
+            response =>{
+                if(response.data.result === "success"){
+                    console.log("驗證成功",data);
+                    console.log(response.data);
+                    alert("已修改會員基本資料");
+                    navigate('/MemberPage');
+                }
+            }
+        )
     }
    
 
@@ -146,8 +81,8 @@ const Mem_DataReset = () =>{
                                     <b>性別</b>
                                     <div key={`default-radio`} className="Member_Sex">
                                         <div className="Member_Sexdecoration">  
-                                            <input name="Member_group_sex[]" type="radio"  id="male-radio" value="男性"  {...register("Member_group_sex", { required: true })} checked={defaultInfo.gender === 'm'}/>
-                                            <input name="Member_group_sex[]" type="radio"  id="female-radio" value="女性" {...register("Member_group_sex", { required: true })} checked={defaultInfo.gender === 'f'}/>
+                                            <input name="Member_group_sex[]" type="radio"  id="male-radio" value="男性"  {...register("Member_group_sex", { required: true })} defaultChecked={defaultInfo.gender === 'm'}/>
+                                            <input name="Member_group_sex[]" type="radio"  id="female-radio" value="女性" {...register("Member_group_sex", { required: true })} defaultChecked={defaultInfo.gender === 'f'}/>
                                         </div>
                                         <div className="Member_Sexdecoration">
                                             <label htmlFor="male-radio">男性</label>

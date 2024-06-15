@@ -32,7 +32,7 @@ function HomeCarousel() {
                                 <h1 style={{fontWeight:"bold", marginBottom:"15px"}}>白州12年單一純麥威士忌</h1>
                                 <h4>清透的琥珀色澤與清爽香氣，</h4>
                                 <h4>獨特的威士忌風味體驗。</h4><br/>
-                                <Button variant="outline-light" style={{padding:"10px", marginLeft:"10px"}}>立即享受</Button>{' '}
+                                <NavLink to="/WhiskeyPage/e52220"><Button variant="outline-light" style={{padding:"10px", marginLeft:"10px"}}>立即享受</Button>{' '}</NavLink>
                             </div>
                         </Carousel.Caption>
                     </Carousel.Item>
@@ -44,7 +44,7 @@ function HomeCarousel() {
                                 <h4 style={{fontWeight:"lighter"}}>本月暢銷</h4>
                                 <h1 style={{fontWeight:"bold", marginBottom:"15px"}}>灰雁原味伏特加</h1>
                                 <h4>瓶身選用霧面磨砂玻璃，錫箔密封軟木塞瓶塞，呈現出與眾不同的精品級質感。</h4><br/>
-                                <Button variant="outline-light" style={{padding:"10px", marginLeft:"10px"}}>點我選購</Button>{' '}
+                                <NavLink to="/VodkaPage/b60101"><Button variant="outline-light" style={{padding:"10px", marginLeft:"10px"}}>點我選購</Button>{' '}</NavLink>
                             </div>
                         </Carousel.Caption>
                     </Carousel.Item>
@@ -56,7 +56,7 @@ function HomeCarousel() {
                                 <h4 style={{fontWeight:"lighter"}}>超凡風味</h4>
                                 <h1 style={{fontWeight:"bold", marginBottom:"15px"}}>約翰走路 黑牌12年</h1>
                                 <h4>各地區氣候和橡木桶等錯綜複雜的因素與略有不同的成熟方式，創造出獨具超凡風味的威士忌</h4><br/>
-                                <Button variant="outline-light" style={{padding:"10px", marginLeft:"10px"}}>即刻入手</Button>{' '}
+                                <NavLink to="/WhiskeyPage/e27777"><Button variant="outline-light" style={{padding:"10px", marginLeft:"10px"}}>即刻入手</Button>{' '}</NavLink>
                             </div>
                         </Carousel.Caption>
                     </Carousel.Item>

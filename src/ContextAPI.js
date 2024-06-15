@@ -34,3 +34,27 @@ export const OrdertotalProvider = ({ children }) =>{
   )
 }
 
+export const SearchdataContext = createContext();
+export const SearchdataProvider = ({ children }) => {
+  const [Searchdata, setSearchdata] = useState([]);
+
+  return (
+    <SearchdataContext.Provider value={{ Searchdata, setSearchdata }}>
+      {children}
+    </SearchdataContext.Provider>
+  );
+};
+
+export const Cart_MerContext = createContext();
+export const Cart_MerProvider = ({ children }) => {
+  const [Cart_Mer, setCart_Mer] = useState({});
+
+  return (
+    <Cart_MerContext.Provider value={{ Cart_Mer, setCart_Mer }}>
+      {children}
+    </Cart_MerContext.Provider>
+  );
+};
+
+
+

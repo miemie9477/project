@@ -6,21 +6,50 @@ import Col from 'react-bootstrap/Col';
 import { NavLink } from "react-router-dom";
 import tanqueray from './pic/Tanqueray  Gin.png';
 import { useForm } from 'react-hook-form';
+import axios from "axios";
+import { AccountContext} from "../../../ContextAPI";
+import { useContext, useEffect, useState } from "react";
 
 const Mem_OrderManage = () =>{
-
+    const { userAccount, setUserAccount} = useContext(AccountContext);
     const { register, handleSubmit, watch, setError, formState: { errors } } = useForm({
         mode:"onSubmit",
         reValidateMode:"onBlur",
 
     });
+    const [transInfo, setTransInfo] = useState({});
+    
+    
+    
+    useEffect(() => {
+        const fetchTransInfo = async () => {
+            try {
+                const url = "http://localhost:3001/modifyMemberSide/viewTrans";
+                const response = await axios.post(url, { userAccount });
+                console.log(response.data);
+                
+
+                const updatedTransInfo = await Promise.all(response.data.map(async item => {
+                    const recordUrl = "http://localhost:3001/modifyMemberSide/viewRecord";
+                    const rId = item.rId;
+                    const recordResponse = await axios.post(recordUrl, { rId });
+                    return { ...recordResponse.data, ...item };
+                }));
+
+                setTransInfo(updatedTransInfo);
+                console.log("new:", updatedTransInfo);
+            } catch (error) {
+                console.error("Error fetching transaction info:", error);
+            }
+        };
+
+        fetchTransInfo();
+    }, [userAccount]);
 
     const onSubmit = (data) => {
         console.log("驗證成功",data);
-        // 这里可以添加你希望在表单验证成功后执行的代码
         
     }
-    console.log(errors)
 
     return(
         <div className="Mem_OrderManageBG">
