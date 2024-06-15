@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import axios from "axios";
 
 const AdminforMemberForms = ({member}) =>{
-    const { register, handleSubmit, watch, setError, formState: { errors } } = useForm({
+    const { register, handleSubmit, watch, setError, getValues, formState: { errors } } = useForm({
         mode:"onSubmit",
         reValidateMode:"onBlur",
 
@@ -12,12 +12,25 @@ const AdminforMemberForms = ({member}) =>{
     
 
     const onSubmit = (data) => {
+        const mId = data.Admin_Mem_MemNum
+        const mName = data.Admin_Mem_MemName
+        const pId = data.Admin_Mem_MemID
+        const email = data.Admin_Mem_MemEmail
+        const gender = data.Admin_Mem_MemSex
+        const phone = data.Admin_Mem_MemPhone
+        const birthday = data.Admin_Mem_MemBirth
+        const mAccount = data.Admin_Mem_MemAccount;
+        const mPwd = data.Admin_Mem_MemPwd
+        const url = "http://localhost:3001/modifyAdminSide/modifyMember"
+        axios.post(url, {mId, mName, pId, email, gender, phone, birthday, mAccount, mPwd})
         console.log("驗證成功",data);
         
         
     }
     const deleteMember = (data) =>{
-        const mId = data.mId;
+        const values = getValues();
+        const mId = values.Admin_Mem_MemNum;
+        console.log(mId);
         const url = "http://localhost:3001/modifyAdminSide/deleteMember";
         axios.post(url, {mId})
         .then(
@@ -25,6 +38,7 @@ const AdminforMemberForms = ({member}) =>{
                 if(response.data.result === "success"){
                     console.log(response.data);
                     alert("系統訊息:已刪除會員", mId);
+                    
                 }
             }
         )
