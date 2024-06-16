@@ -253,3 +253,125 @@ td.Admin_Mer_Modify {
 .Admin_Mer_Delete button{
     color: white;
 }
+
+
+
+
+
+
+.Admin_Order_TitleText{
+    text-align: left;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.Admin_Order_line{
+    margin: 8px 0px 15px 0px;
+    width: 100%;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    
+} 
+
+.Admin_Order_OrderTable{
+    /* border: 1px rgb(188, 188, 188) solid; */
+    margin: 0 auto;
+}
+
+.Admin_Order_OrderTable th:not(th.Admin_Order_Modify):not(th.Admin_Order_Delete){
+    border: 1px rgb(188, 188, 188) solid;
+    padding: 4px 0px 4px 5px ;
+}
+
+.Admin_Order_OrderTable td:not(.Admin_Order_FormTD):not(.Admin_Order_FormTD td):not(td.Admin_Order_Modify){
+    padding: 0px;
+}
+
+.Admin_Order_FormTD{
+    padding: 0px;
+}
+
+.Admin_Order_FormTD td:not(.Admin_Order_Modify):not(.Admin_Order_Delete){
+    border-bottom: 1px rgb(188, 188, 188) solid;
+    border-left: 1px rgb(188, 188, 188) solid;
+    border-right: 1px rgb(188, 188, 188) solid;
+    padding-left: 5px;
+}
+
+td.Admin_Order_Modify {
+    padding-left: 5px;
+}
+
+
+.Admin_Order_OrderTable textarea {
+    box-sizing: border-box; /* 确保 textarea 元素的宽度包括内边距和边框 */
+    resize: none; /* 禁用 textarea 的调整大小功能 */
+    background-color: rgb(240, 240, 240);
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0;
+    margin-top: 5px;
+    display: block;
+    line-height: 1; /* 设置行高为一行的高度 */
+    
+
+}
+
+
+.Admin_Order_OrderTable textarea:focus{
+    outline: none;
+    border: none;
+}
+
+
+.Admin_Order_TransNum{
+    width: 7%;
+    pointer-events: none;
+}
+
+.Admin_Order_MemNum{
+    width: 7%;
+}
+
+.Admin_Order_Receiver{
+    width: 6%;
+}
+
+.Admin_Order_Shipping{
+    width: 6%;
+}
+
+.Admin_Order_Address{
+    width: 15%;
+}
+
+.Admin_Order_ShipState{
+    width: 5%;
+}
+
+.Admin_Order_PayState{
+    width: 8%;
+}
+
+.Admin_Order_OrderTotal{
+    width: 6%;
+}
+
+.Admin_Order_Modify{
+    width: 4%;  
+}
+
+.Admin_Order_Modify button{
+    color: white;
+}
+
+.Admin_Order_Delete{
+    width: 4%;  
+}
+
+.Admin_Order_Delete button{
+    color: white;
+}

@@ -23,11 +23,18 @@ const AdminforMemberForms = ({member}) =>{
         const mPwd = data.Admin_Mem_MemPwd
         const url = "http://localhost:3001/modifyAdminSide/modifyMember"
         axios.post(url, {mId, mName, pId, email, gender, phone, birthday, mAccount, mPwd})
-        console.log("驗證成功",data);
+        .then(
+            response =>{
+                if(response.data.result === "success"){
+                    console.log("驗證成功",data);
+                    alert(`已修改會員資料${mId}`);       
+                }
+            }
+        )
         
         
     }
-    const deleteMember = (data) =>{
+    const deleteMember = () =>{
         const values = getValues();
         const mId = values.Admin_Mem_MemNum;
         console.log(mId);
@@ -37,7 +44,7 @@ const AdminforMemberForms = ({member}) =>{
             response =>{
                 if(response.data.result === "success"){
                     console.log(response.data);
-                    alert("系統訊息:已刪除會員", mId);
+                    alert(`系統訊息:已刪除會員 ${mId}`);
                     
                 }
             }
