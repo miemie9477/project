@@ -178,8 +178,8 @@
 }
 
 .Mem_Trans_CartItem img{
-    max-height: 90px;
-    max-width: 90px;
+    height: 90px;
+    width: 90px;
     margin-left: 15px;
     margin-right: 15px;
     border: 1px solid black;
@@ -191,11 +191,18 @@
 .Mem_Trans_CartItem a{
     text-decoration: none;
     color: black;
+    align-content: end;
+}
+
+.Mem_Trans_CartItem_CSSFIX{
+    height: 100px;
 }
 
 .Mem_Trans_Totalprice{
     text-align: end;
     font-size: 20px;
+    margin-top: 5px;
+    line-height: 20px;
 }
 
 .Mem_Trans_divider2{

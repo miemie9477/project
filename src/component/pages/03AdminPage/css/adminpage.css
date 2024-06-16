@@ -334,6 +334,7 @@ td.Admin_Order_Modify {
 
 .Admin_Order_MemNum{
     width: 7%;
+    pointer-events: none;
 }
 
 .Admin_Order_Receiver{
@@ -349,11 +350,11 @@ td.Admin_Order_Modify {
 }
 
 .Admin_Order_ShipState{
-    width: 5%;
+    width: 6%;
 }
 
 .Admin_Order_PayState{
-    width: 8%;
+    width: 6%;
 }
 
 .Admin_Order_OrderTotal{

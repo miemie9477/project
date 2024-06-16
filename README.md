@@ -75,8 +75,8 @@ const Gin;
 
 ```
 project/
-|
-|──src/     # 代碼目錄
+|──Client
+|   |──src/     # 代碼目錄
 |   └──component/   #所有元件存放處
 |       |
 |       |──BasicFrame/  #誤動，存放網頁基本架構，請勿擅自增加檔案或修改
@@ -91,6 +91,11 @@ project/
 |           |──HomePage/    #(舉例說明用)用來存放主畫面的頁面
 |           |──GinPage/  #(舉例說明用)依照存放的類型作命名
 |           └──...          #其他
+|──Server
+|   |──index.js #entry
+|   |──route/
+|   |   └── (function page).js #API
+|   └──model/ #database connection
 ```
 **元件太多可以視情況增加資料夾，整合方便為主*
 
