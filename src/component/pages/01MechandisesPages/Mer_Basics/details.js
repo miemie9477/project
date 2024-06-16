@@ -115,7 +115,7 @@ const Details = ({pNo,Alcohol}) => {
         }
             console.log(reqInfo)
             if(reqInfo.amount > productInfo.pAmount){
-                alert("已超出庫存數量。目前庫存數:", productInfo.pAmount);
+                alert(`已超出庫存數量。目前庫存數: ${productInfo.pAmount}`);
             }
             else if(reqInfo.amount === 0){
                 alert("請新增要加入購物車的數量");

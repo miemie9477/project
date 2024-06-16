@@ -48,9 +48,9 @@
 React.js<br/>
 React.bootstrap<br/>
 react-router-dom (npm install react-router-dom) <br>
-npm install react-icons
-npm install js-cookie
-npm install react-hook-form
+npm install react-icons<br>
+npm install js-cookie<br>
+npm install react-hook-form<br>
 
 >壓縮檔案前請不要將*node_modules/*一同壓縮
 

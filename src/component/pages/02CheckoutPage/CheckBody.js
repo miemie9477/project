@@ -60,52 +60,55 @@ const CheckBody = () =>{
             const pNo = item.pNo;
             const amount = item.amount;
             console.log("pNo", pNo, amount);
-            await axios.post(url, { pNo, amount})
-            .then(
-                response =>{
-                    if(response.data.result === "fail"){
-                        console.log(response.data.pAmount);
-                        alert("庫存數量不足，請重新下單", response.data.pAmount);
-                        navigate("/CartPage");
-                    }
-                    var rId;
-                    var time = getTaiwanTime();
-                    console.log("time:", time);
-                    const info ={
-                        total:userOrdertotal,
-                        tMethod: "cart",
-                        tTime: time,
-                        mId: userAccount,
-                        tPay: "credit card",
-                        bankId: data.Check_BankCode,
-                        bankName: data.Check_BankName,
-                        cardId: data.Check_CreditcardNumber,
-                        security: data.Check_CreditcardCVC,
-                        dueDate: data.Check_ExpirationDate,
-                        tDelivery: data.Check_DeliverMethod,
-                        tAddress: data.Check_Address,
-                        recipient: data.Check_ReceiverName,
-                        reciPhone: data.Check_ReceiverPhone
-            
-                    }
-                    console.log(info);
-                    var url = "http://localhost:3001/check/inputTrans"
-                    axios.post(url, info)
-                    .then(
-                        response =>{
-                            console.log(response.data);
-                            rId = response.data.rId;
-                            console.log("get rId:", rId);
-                            inputRecord(rId);
-                            console.log("驗證成功",data);
-                            navigate('/CartPage/CheckPage/CheckSucceedPage');
-                        }
-                    )
-                    
+            try {
+                const response = await axios.post(url, { pNo, amount });
+    
+                if (response.data.result === "fail") {
+                    console.log(response);
+                    alert(`庫存數量不足，請重新下單`);
+                    navigate("/CartPage");
+                    return; 
                 }
-            )
+    
+            } catch (error) {
+                console.error("Error checking product amount:", error);
+                alert("發生錯誤，請稍後再試。");
+                return;
+            }
+                var rId;
+                var time = getTaiwanTime();
+                console.log("time:", time);
+                const info ={
+                    total:userOrdertotal,
+                    tMethod: "cart",
+                    tTime: time,
+                    mId: userAccount,
+                    tPay: "credit card",
+                    bankId: data.Check_BankCode,
+                    bankName: data.Check_BankName,
+                    cardId: data.Check_CreditcardNumber,
+                    security: data.Check_CreditcardCVC,
+                    dueDate: data.Check_ExpirationDate,
+                    tDelivery: data.Check_DeliverMethod,
+                    tAddress: data.Check_Address,
+                    recipient: data.Check_ReceiverName,
+                    reciPhone: data.Check_ReceiverPhone
+        
+                }
+                console.log(info);
+                var url = "http://localhost:3001/check/inputTrans"
+                axios.post(url, info)
+                .then(
+                    response =>{
+                        console.log(response.data);
+                        rId = response.data.rId;
+                        console.log("get rId:", rId);
+                        inputRecord(rId);
+                        console.log("驗證成功",data);
+                        navigate('/CartPage/CheckPage/CheckSucceedPage');
+                    }
+                )      
         }
-
 
     }    
     
