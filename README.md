@@ -76,21 +76,21 @@ const Gin;
 ```
 project/
 |──Client
-|   |──src/     # 代碼目錄
-|   └──component/   #所有元件存放處
-|       |
-|       |──BasicFrame/  #誤動，存放網頁基本架構，請勿擅自增加檔案或修改
-|       |   |
-|       |   |──css/         #用來存放BasicFrame的css檔案
-|       |   |──pic/         #用來存放BasicFrame有關的圖檔
-|       |   |──frame.js     #主要文件
-|       |   └──...          #其他資料夾/檔案    
-|       |     
-|       └──pages/       #網頁其他頁面
+|   └──src/     # 代碼目錄
+|       └──component/   #所有元件存放處
 |           |
-|           |──HomePage/    #(舉例說明用)用來存放主畫面的頁面
-|           |──GinPage/  #(舉例說明用)依照存放的類型作命名
-|           └──...          #其他
+|           |──BasicFrame/  #誤動，存放網頁基本架構，請勿擅自增加檔案或修改
+|           |   |
+|           |   |──css/         #用來存放BasicFrame的css檔案
+|           |   |──pic/         #用來存放BasicFrame有關的圖檔
+|           |   |──frame.js     #主要文件
+|           |   └──...          #其他資料夾/檔案    
+|           |     
+|           └──pages/       #網頁其他頁面
+|               |
+|               |──HomePage/    #(舉例說明用)用來存放主畫面的頁面
+|               |──GinPage/  #(舉例說明用)依照存放的類型作命名
+|               └──...          #其他
 |──Server
 |   |──index.js #entry
 |   |──route/
