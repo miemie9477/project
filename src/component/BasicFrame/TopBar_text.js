@@ -28,6 +28,10 @@ const TopBarText = () => {
     const AdminBackstage = () =>{
         navigate('/AdminPage')
     }
+
+    const AdminStatisticsBackstage = () =>{
+        navigate('/AdminStatisticsPage')
+    }
     
     const LoginIdentity1 = () =>
     {
@@ -53,6 +57,7 @@ const TopBarText = () => {
                     <Dropdown.Toggle as={NavLink} >管理者專區</Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={AdminBackstage}>後台管理</Dropdown.Item>
+                        <Dropdown.Item onClick={AdminStatisticsBackstage}>後台數據統計</Dropdown.Item>
                         <Dropdown.Divider></Dropdown.Divider>
                         <Dropdown.Item onClick={LogOut}>登出</Dropdown.Item>
                     </Dropdown.Menu>

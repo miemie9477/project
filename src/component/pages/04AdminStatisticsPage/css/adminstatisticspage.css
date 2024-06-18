@@ -1,0 +1,84 @@
+.AdminStatisticsBodyCssBG{
+    background-color: rgb(240, 240, 240);
+    
+}
+
+.AdminStatisticsBodyCss{
+    margin: 15px auto 0px auto;
+    width: 100%;
+    
+}
+
+
+.Admin_Statis_SaleAmountTitleText{
+    text-align: left;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.Admin_Statis_SaleAmountline{
+    margin: 8px 0px 15px 0px;
+    width: 100%;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    
+} 
+
+.Admin_Statis_SaleAmountTable{
+    /* border: 1px rgb(188, 188, 188) solid; */
+    margin: 0 auto;
+}
+
+.Admin_Statis_SaleAmountTable th{
+    border: 1px rgb(188, 188, 188) solid;
+    padding: 4px 0px 4px 5px ;
+}
+
+.Admin_Statis_SaleAmountTable td:not(.Admin_Statis_SaleAmountFormTD):not(.Admin_Statis_SaleAmountFormTD td){
+    padding: 0px;
+}
+
+.Admin_Statis_SaleAmountFormTD{
+    padding: 0px;
+}
+
+.Admin_Statis_SaleAmountFormTD td{
+    border-bottom: 1px rgb(188, 188, 188) solid;
+    border-left: 1px rgb(188, 188, 188) solid;
+    border-right: 1px rgb(188, 188, 188) solid;
+    padding-left: 5px;
+}
+
+.Admin_Statis_SaleAmountTable textarea {
+    box-sizing: border-box; /* 确保 textarea 元素的宽度包括内边距和边框 */
+    resize: none; /* 禁用 textarea 的调整大小功能 */
+    background-color: rgb(240, 240, 240);
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0;
+    margin-top: 5px;
+    display: block;
+    line-height: 1; /* 设置行高为一行的高度 */
+    pointer-events: none;
+
+}
+
+
+.Admin_Statis_SaleAmountTable textarea:focus{
+    outline: none;
+    border: none;
+}
+
+
+.Admin_Statis_SaleAmountMerName{
+    width: 7%;
+
+}
+
+.Admin_Statis_SaleAmountAmount{
+    width: 7%;
+
+}

@@ -81,8 +81,8 @@ const Mem_DataReset = ({defaultInfo, setDefaultInfo}) =>{
                                     <b>性別</b>
                                     <div key={`default-radio`} className="Member_Sex">
                                         <div className="Member_Sexdecoration">  
-                                            <input name="Member_group_sex[]" type="radio"  id="male-radio" value="男性"  {...register("Member_group_sex", { required: true })} defaultChecked={defaultInfo.gender === 'm'}/>
-                                            <input name="Member_group_sex[]" type="radio"  id="female-radio" value="女性" {...register("Member_group_sex", { required: true })} defaultChecked={defaultInfo.gender === 'f'}/>
+                                            <input name="Member_group_sex[]" type="radio"  id="male-radio" value="M"  {...register("Member_group_sex", { required: true })} defaultChecked={defaultInfo.gender === 'm'}/>
+                                            <input name="Member_group_sex[]" type="radio"  id="female-radio" value="F" {...register("Member_group_sex", { required: true })} defaultChecked={defaultInfo.gender === 'f'}/>
                                         </div>
                                         <div className="Member_Sexdecoration">
                                             <label htmlFor="male-radio">男性</label>

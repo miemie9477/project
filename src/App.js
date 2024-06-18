@@ -74,6 +74,7 @@ import RegisterSucceedPage from "./component/pages/02RegisterSucceedPage/Registe
 import MemberPage from "./component/pages/03MemberPage/MemberPage";
 import AdminPage from "./component/pages/03AdminPage/AdminPage";
 import SearchPage from "./component/pages/00SearchPage/SearchPage";
+import AdminStatisticsPage from "./component/pages/04AdminStatisticsPage/AdminStatisticsPage";
 
 
 
@@ -158,6 +159,7 @@ function App() {
           <Route path="MemberPage" element={<ProtectedRoute element={<MemberPage />} allowedRoles={[1, 2]} />}/>
           <Route path="AdminPage" element={<ProtectedRoute element={<AdminPage />} allowedRoles={[2]} />}/>
           <Route path="SearchPage" element={<SearchPage/>}/>
+          <Route path="AdminStatisticsPage" element={<ProtectedRoute element={<AdminStatisticsPage />} allowedRoles={[2]} />}/>
           
 
         </Routes>
