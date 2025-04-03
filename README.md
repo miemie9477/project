@@ -9,6 +9,7 @@
 
 以「買酒網」作為參考雛形的電商網站專案(前端)
 連結:[專案報告書]( https://docs.google.com/document/d/1cEVcql3TnH9GEllpDvkUI5ZXAQBUdQUF/edit?usp=drive_link&ouid=101188799150306536840&rtpof=true&sd=true)
+[後端git連結](https://github.com/miemie9477/project_Server#)
 * 使用語言: React.js
 * 製作日期: 2024.06
 * 作者: 
