@@ -1,23 +1,29 @@
 # OutLine
+0.About this project
 1.Update Journal
-
 2.Todo List
-
 3.The format about this project
-
 4.Contact
 
+## About this project
+
+以「買酒網」作為參考雛形的電商網站專案(前端)
+連結:[專案報告書]( https://docs.google.com/document/d/1cEVcql3TnH9GEllpDvkUI5ZXAQBUdQUF/edit?usp=drive_link&ouid=101188799150306536840&rtpof=true&sd=true)
+* 使用語言: React.js
+* 製作日期: 2024.06
+* 作者: 
+    * kenchen0814@gmail.com
+    * jelena0625@gmail.com (我)
+<hr/>
+
+## Update Journal: 2024.06.08 Tuesday 22:20
 ### 咩備忘錄
 * 做到cart改變數量
 
 ### 給咩的備忘錄
 * Admin後台 補傳訂單總金額 到 訂單資料表
 * Member後台 補傳訂單總金額與購買的商品詳細資料
-
-# Update Journal: 2024.06.08 Tuesday 22:20
-
 * **商品圖的檔名用商品編號**
-
 * 購物車
     * 上面全選要做
     * 把 *已勾選* 的物品傳到結帳頁面(結帳金額也要記得改)，後端才能接資料串API(有溝的才要結帳)
@@ -31,17 +37,16 @@
     * 留言板留言寫好了但還沒測試(大機率是要改)
 
 
-
-# Todo
+## Todo
 - [ ] 購物車
 - [ ] Admin
 - [ ] 會員資料修改區
  
 *****
 
-# The format about this project
+## The format about this project
 
-## Build with
+### Build with
 
 >*若有新增其他library請註明*
 
@@ -55,7 +60,7 @@ npm install react-hook-form<br>
 >壓縮檔案前請不要將*node_modules/*一同壓縮
 
 
-## 資料夾說明
+### 資料夾說明
 作為example，不要完全照著上面的打<br>
 *可以依照實際情況做修改，例如:添加常用物件資料夾 Global*
 
@@ -99,9 +104,9 @@ project/
 ```
 **元件太多可以視情況增加資料夾，整合方便為主*
 
-## 關於資料
+### 關於資料
 
->>**有任何問題請先閱讀過[企劃書]("https://docs.google.com/document/d/1b8HA1xJPjE1kEfdy2mb1kw6SG_sZCfPdGCIrihPWm3w/edit?usp=sharing")**
+>**有任何問題請先閱讀過[企劃書]("https://docs.google.com/document/d/1b8HA1xJPjE1kEfdy2mb1kw6SG_sZCfPdGCIrihPWm3w/edit?usp=sharing")**
 
 * 參考網站 [買酒網](https://www.my9.com.tw/)
 
@@ -119,7 +124,7 @@ https://drive.google.com/drive/folders/1j7-iXBeGXZY4DOuvRrDEiXRdFT7zrTCk?usp=sha
     * 基酒png檔案
     * 網頁常用圖檔
 
-# Contact
+## Contact
 
 **有時候Discord掛請勿打擾時會接不到電話跟訊息，這個時候就直接打我line或mes**
 
